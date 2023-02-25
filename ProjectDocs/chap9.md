@@ -24,4 +24,39 @@
 | **c.insert(p, b, e)**    | **将迭代器b和e指定范围内的元素插到迭代器p指向的元素之前，b和e中不能指向c中的元素。返回新添加的第一元素的迭代器。** |
 | **c.insert(p, il)**      | **il是一个花括号包围的元素值列表。**                                                                               |
 
-![image-20230225140420965](images/image-20230225140420965.png)
+#### 使用emplace 操作
+
+新标准引入了三个成员，emplace、emplace_front、emplace_back，这三个函数操作构造函数而不是拷贝元素。对应这操作insert、push_front、push_back.
+
+```C++
+// 在c的末尾构造一个Sales_data对象， 
+c.emplace_back("1000", 24, 15.99)
+    
+c.push_back("1000", 24, 15.99)		// 操作，只能操作对象进行拷贝。可以是临时对象
+```
+
+### 9.3.2 访问元素
+
+| -        |                              -                               |
+| -------- | :----------------------------------------------------------: |
+| at       |     适用于string、vector、deque、array 物理空间是连续的      |
+| back     |                     不适用于forward_list                     |
+| c.font() |         返回c中首元素的引用，若c为空，函数行为未定义         |
+| c[n]     | 返回c中下表为n的元素的引用，n是一个无符号整数，若n>=c.size(), 则函数行为未定义。 |
+| c.at(n)  | 返回c中下表为n的元素的引用，若下标越界抛出一个out_of_range 异常 |
+|          | <font color=red>对空容器调用front和back，就像使用越界的下标一样，是一种严重的程序设计错误，这种行为是未定义的。</font> |
+
+```c++
+
+
+
+```
+
+
+
+
+
+
+
+:point_left:[上一节](/ProjectDocs/chap8.md):heart:  :heart:   :heart:   :heart:   :heart:   :heart:   :heart:   :heart:  :heart:  :heart:   :heart:   :heart:   :heart:   :heart:   :heart:   :heart:  :heart:  :heart:   :heart:   :heart:   :heart:   :heart:   :heart:   :heart:  :heart:  :heart:   :heart:   :heart:   :heart:   :heart:   :heart:   :heart:  :heart:  :heart:   :heart:   :heart:   :heart:   :heart:   :heart:   :heart:  :heart:  :heart:   :heart:   :heart:   :heart:   :heart:   :heart:   :heart:  :heart:  :heart:    :point_right:[下一节](/ProjectDocs/chap10.md)
+
