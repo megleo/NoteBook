@@ -90,5 +90,9 @@ void GPUKernel(float* A, float* B, float* C, int n)
 - 一个kernel其实由一个grid来执行。
 - 一个kernel一次只能在一个GPU上执行。
 
+## 线程块： 可扩展的集合体
 
+将线程数组分为多个块
+
+- 快内
 
