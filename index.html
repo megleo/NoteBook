@@ -328,7 +328,7 @@
 
     /*滚动条样式 start*/
     /* 滚动条宽度 */
-    ::-webkit-scrollbar{width:5px;}
+    ::-webkit-scrollbar{width:7px;}
     /* 滚动条颜色 */
     ::-webkit-scrollbar-thumb{
       background: #33a9dc;
@@ -549,7 +549,7 @@
          var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
          var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
          var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
-         document.getElementById("sitetime").innerHTML ="北京时间 " + todayYear + "年" + todayMonth + "月" + todayDate + "  "+ todayHour + ":" + todayMinute + ":" + todaySecond + ". 本站已安全运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分 " + diffSeconds + " 秒 ";
+         document.getElementById("sitetime").innerHTML ="北京时间 " + todayYear + "年 " + todayMonth + "月 " + todayDate + "日  "+ todayHour + ":" + todayMinute + ":" + todaySecond + "  本站已安全运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分 " + diffSeconds + " 秒啦";
       }
       siteTime();
   </script>

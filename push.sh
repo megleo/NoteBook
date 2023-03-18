@@ -11,7 +11,7 @@ git_push(){
     echo "-------切换目录------"
     echo `pwd`
     echo "---------------------"
-    if [ $[ ${this_time}-${modify_time} ] -gt 1 ];
+    if [ $[ ${this_time}-${modify_time} ] -gt 86400 ];
     then
          echo "${1} 文件夹 有变化，正在准备push..."
         date=`date "+%Y-%m-%d %H:%M:%S"`
