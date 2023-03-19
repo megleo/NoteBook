@@ -322,9 +322,238 @@ int main(int argc, char** argv) {
 }
 ```
 
+---
+
 # CUDA C 编程 矩阵乘法
 
+## 矩阵乘法 原理
 
+$$
+C = A*B（A[m, k], B[k, n], C[m, n]）
+$$
+
+**一个线程负责计算C中的一个元素**
+
+![image-20230319113021601](images/image-20230319113021601.png)
+
+## 矩阵乘法：CPU 实现
+
+```c++
+// Matrix multiplication on the CPU host
+void main() {
+    define A, B, C;
+     for i = 0 to M-1 do
+         for j = 0 to N -1 do
+             /*  compute element C(i, j) */
+             for k = 0 to K-1 do
+                 C(i, j) <= C(i, j) + A(i, k) * B(k, j)
+             end
+        end
+  end
+}
+```
+
+## 矩阵乘法： GPU实现
+
+```c++
+void main() {
+	define A_cpu, B_cpu, C_cpu in the CPU memory;
+	define A_gpu, B_gpu, C_gpu in the GPU memory;
+	
+	memcopy A_cpu to A_gpu;
+	memcopy B_cpu to B_gpu;
+	
+	dim3 dimBlock(16, 16);
+	dim3 dimGrid(N/dimBlock.x, M/dimBlock.y);
+	
+	matrixMul<<<dimGrid, dimBlock>>>(A_gpu, B_gpu, C_gpu, K);
+	
+	memcopy C_gpu to C_cpu;
+}
+```
+
+
+
+### GPU 实现的核函数
+
+```c++
+__global__ void matrixMul(A_gpu, B_gpu, K) {
+    
+    temp <= 0;
+    i <= blockIdx.y * blockDim.y + threadIdx.y
+    j <= blockIdx.x * blockDim.x + threadIdx.x
+        
+   for k = 0 to k-1 do
+       accu <= accu + A_gpu(i, k) * B(k,j)
+   end
+       
+  C_gpu(i,j) <= accu
+    
+}
+```
+
+
+
+## 矩阵乘法
+
+$$
+C = A*B（A[m, k], B[k, n], C[m, n]）
+$$
+
+- 一个线程负责计算C中的一个元素
+- A中的每一行从全局内存中载入N次
+- B中的每一列从全局内存中载入M次。
+- ![image-20230319114958005](images/image-20230319114958005.png)
+
+### 问题
+
+1. C =AB的矩阵乘法运算，每个线程需要读取A的一整行和B的一整列。A矩阵中的每个点都需要被读取N次，B矩阵中的每个点都需要被读取M次。
+2. 可以将多次访问的数据放到*共享内存*中，减少重复读取的次数，并充分利用共享内存的延迟低优势。
+
+### CUDA内存的读取速度
+
+*每个线程的读取速度对比*
+
+- 各自线程寄存器	～1周期
+- 线程块共享内存 ～5周期
+- Grid全局内存 ～500 周期
+- Grid常量内存 ～5 周期
+
+![image-20230319115557959](images/image-20230319115557959.png)
+
+## 线程块的共享内存
+
+- 一种特殊类型的内存， 其内容在源代码中被显式的声明和使用
+  - 位于处理器中
+  - 以更高的速度访问（延迟&吞吐）
+  - 仍然能被内存访问指令访问
+  - 在计算机体系机构中常被称为暂存存储器
+- 共享内存特点
+  - 读取速度等于缓存，在很多的显卡上，缓存和共享内存使用的是同一块物理硬件，并且可以配置大小。
+  - 共享内存属于线程块，可以被一个线程块内所有的线程访问。
+  - 共享内存有两种申请访问方式： 静态申请和动态申请
+  - 共享内存的大小只有几十K， 过度使用贡献内存会降低程序的并行性。
+
+## 共享内存的使用方法
+
+1. 申请
+
+   - \__shared\_\_ 关键字
+   - 静态申请
+   - 动态申请
+2. 使用
+
+   - 将每个线程从全局索引位置读取元素，将它存储到共享内存中
+   - 注意数据存在交叉，应该将边界上的数据拷贝进来
+   - 块内线程同步： \_\_syncthreads()
+
+### 线程同步函数
+
+- \_\_syncthreads()是cuda的内建函数，用于块内线程通信。
+- 可以达到\_\_synctread的线程同步，而不是等待块内所有其他线程再同步。
+
+```c++
+__shared__ val[];
+if(index < n) {
+    if (tid condation) {
+        do something with val;
+    }
+    
+    __syncthreads();
+    do something with val;
+    __syncthreads();
+}
+```
+
+```c++
+__shared__ val[];
+if(index < n) {
+    if(tid condition) {
+        do something with val;
+        __syncthreads();
+    } else {
+        do something with val;
+        __suncthreads();
+    }
+}
+```
+
+## 静态申请共享内存
+
+共享内存大小明确
+
+```c++
+__global__ void staticReverse(int *d, int n) {
+    __shared__ int s[64];
+    int t = threadIdx.x;
+    int tr = n - t - 1;
+    s[t] = d[t];
+    __syncthreads();
+    d[t] = s[tr];
+}
+
+staticReverse<<<1, n>>>(d_d, n);
+```
+
+## 动态申请共享内存
+
+共享内存大小不明确
+
+```c++
+__global__ void dynamicReverse(int* d, int n) {
+	extern __shared__ int s[];
+    int t = threadIdx.x;
+    int tr = n - t - 1;
+    s[t] = d[t];
+        __syncthreads();
+    d[t] = s[tr];
+}
+
+dynamicReverse<<<1, n, n * sizeof(int)>>> (d_d, n);
+```
+
+## 思路： 使用共享内存复用全局内存数据
+
+![image-20230319141528063](images/image-20230319141528063.png)
+
+- 每个输入元素被WIDTH个线程读取
+- 将每个元素加载到共享内存并让多个线程使用本地版本以减少内存带宽。
+
+### 平铺矩阵乘法
+
+![image-20230319141551675](images/image-20230319141551675.png)
+
+将内核的执行分解为多个阶段，使得每个阶段的数据访问再一个子集上（tile）of Md and Nd.
+
+
+$$
+C\_BLOCK = \sum B\_BLOCK*A\_BLOCK
+$$
+之前计算C_BLOCK需要读取：
+$$
+C\_BLOCK\_SIZE ^{2} * K *2
+$$
+平铺矩阵乘法：
+$$
+C\_BLOCK\_SIZE * K * 2
+$$
+
+### 平铺矩阵的读取
+
+- 第一个平铺矩阵
+  - M\[Row]\[tx]
+  - N\[ty][Col]
+- 下一个平铺矩阵元素
+  - M\[Row][1*TILE_WIDTH+tx]
+  - N\[1*TILE_WIDTH + ty][Col]
+
+## 平铺矩阵乘法核函数
+
+
+
+
+
+---
 
 # TensorRT 介绍
 
@@ -346,11 +575,31 @@ int main(int argc, char** argv) {
 
 ## TensorRT 优化策略介绍
 
-1. 
+![image-20230318172642909](images/image-20230318172642909.png)
+
+1. 低精度优化
+
+2. Kernel自动调优
+
+   TRT会根据当前的显卡和输入固定选择不同的分支，后续不需要再选择分支。这也解释了为什么不同的NVIDIA显卡架构间不兼容
+
+3. 算子融合
+
+4. 多流运行
+
+   如下面的Google的初始结构
+
+![image-20230318172756274](images/image-20230318172756274.png)
 
 
 
 
+
+![image-20230318181008631](images/image-20230318181008631.png)
+
+
+
+## TensorRT的组成
 
 
 
