@@ -1,5 +1,3 @@
-![icon](https://megleo.github.io/NoteBook/images/earch.svg)
-
 ## AI & CS & SE
 
 - 路虽远，行则将至
