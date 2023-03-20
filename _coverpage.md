@@ -1,4 +1,4 @@
-![icon](https://notebook.js.org/images/icon.png)
+![icon](https://megleo.github.io/NoteBook/images/earch.svg)
 
 ## AI & CS & SE
 
