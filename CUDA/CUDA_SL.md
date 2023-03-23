@@ -547,7 +547,144 @@ $$
   - M\[Row][1*TILE_WIDTH+tx]
   - N\[1*TILE_WIDTH + ty][Col]
 
+
+
+### 理论加速比
+
+理论加速比Block_size
+
+
+
+*考虑到同步函数和共享内存的读写，实际的加速比比这个值低。*
+
 ## 平铺矩阵乘法核函数
+
+```c++
+#include <iostream>
+#include <stdio.h>
+#include <time.h>
+#include <math.h>
+
+#include "cuda_runtime.h"
+#include "device_launch_parameters.h"
+#include "cublas_v2.h"
+using namespace std;
+
+#define M 512
+#define K 512
+#define N 512
+
+#define BLOCK_SIZE 32   // block size, each thread to calcucate each bloc
+
+void initial(float *array, int size)
+{
+    for (size_t i = 0; i < size; i++)
+    {
+        array[i] = (float)(rand() % 10 + 1);
+    }
+}
+
+void printMaxtrix(float *array, int row, int col)
+{
+    float *p = array;
+    for (size_t y = 0; y < row; y++)
+    {
+        for (size_t x = 0; x < col; x++)
+        {
+            printf("10lf", p[x]);
+        }
+        p = p + col;
+        printf("\n");
+    }
+}
+
+__global__ void multiplicateMatrixOnHost(float *array_A, float *array_B, float *array_C, int M_p, int K_p, int N_p) 
+{
+    int ix = threadIdx.x + blockDim.x * blockIdx.x; // row number
+    int iy = threadIdx.y + blockDim.y * blockIdx.y; // col number
+
+    if (ix < N_p && iy < M_p)
+    {
+        float sum = 0;
+        for (size_t i = 0; i < K_p; i++)
+        {
+            sum += array_A[iy* K_p + i] * array_B[K_p * ix + i];
+        }
+        array_C[iy*N_p + ix] = sum;
+    }
+}
+
+// Compute C = A + B
+
+__global__ void matrixMultiplyShared(float *A, float*B, float*C, 
+    int numARows, int numAColums, int numBRows, int numBColums, int numCRows, int numCColums)
+{
+     // @@ Insert code to implement matrix multiplication here
+     // @@ You have to use shared memory for this MP
+
+     __shared__ float sharedM[BLOCK_SIZE][BLOCK_SIZE];
+     __shared__ float sharedN[BLOCK_SIZE][BLOCK_SIZE];
+
+     int bx = blockIdx.x;
+     int by = blockIdx.y;
+     int ty = threadIdx.x;
+     int tx = threadIdx.y;
+
+     int row = by * BLOCK_SIZE + ty;
+     int col = bx * BLOCK_SIZE + tx;
+
+     float Cstub = 0.0;
+
+     for (size_t i = 0; i < (int)(ceil((float) numAColums) / BLOCK_SIZE); i++)
+     {
+        if (i * BLOCK_SIZE + tx < numAColums && row < numARows)
+        {
+            sharedM[ty][tx] = A[row*numAColums + i * BLOCK_SIZE + tx];
+        } else {
+            sharedM[ty][tx] = 0.0;
+        }
+
+        if (i * BLOCK_SIZE + ty < numBRows && col < numBColums)
+        {
+            sharedN[ty][tx] = B[(i * BLOCK_SIZE +ty) * numBColums + col];
+        } else {
+            sharedN[ty][tx] = 0.0;
+        }
+
+        __syncthreads();
+
+        for (size_t j = 0; j < BLOCK_SIZE; j++)
+        {
+            Cstub += sharedM[ty][j] * sharedN[j][tx];
+        }
+        __syncthreads();
+     }
+
+    if (row < numCRows && col < numCColums)
+    {
+        C[row * numCColums + col] = Cstub;
+    }
+}
+
+
+int main(int argc, char** argv) {
+
+    clock_t start = 0, finish = 0;
+    float time;
+
+    int Axy = M * K;
+    int Bxy = K * N;
+    int Cxy = M * N;
+
+    float *h_A, *h_B, *hostRef, *deviceRef;
+    h_A = (float *) malloc(Axy * sizeof(float));
+    h_A = (float *) malloc(Bxy * sizeof(float));
+
+    int nBytes = M * N * sizeof(float);
+    
+    return 0;
+}
+```
 
 
 
