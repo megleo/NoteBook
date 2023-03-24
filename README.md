@@ -29,6 +29,7 @@ It was the best of times, it was the worst of times.
 * [Latex 语法使用指南](ToolBox/LaTex使用指南)
 * [Git 操作指南](ToolBox/Git%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.md)
 * [Vscode 技巧](ToolBox/vscode.md)
+* [vim](ToolBox/vim.md)
 
 ## 🔛 无聊刷题LeetCode
 
