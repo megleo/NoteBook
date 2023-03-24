@@ -686,6 +686,58 @@ int main(int argc, char** argv) {
 }
 ```
 
+## CUDA Stream
+
+CUDA stream 是GPU task的执行队列，所有CUDA操作（kernel, 内存拷贝等）都是在Stream上执行的。
+
+
+
+CUDA stream有两种，
+
+- 隐式流 又称默认流
+
+  所有的CUDA操作默认运行在隐式流。隐式流里面的GPU task 和CPU端计算是同步的。
+
+  举例： n = 1 这行代码，必须等上面的三行都执行完， 才会被执行。
+
+  ![image-20230324090637039](images/image-20230324090637039.png)
+
+- 显式流
+
+  显式流里的GPU task 和CPU端计算是异步的。不同显式流内GPU task的执行也是异步的。
+
+  ![image-20230324090927045](images/image-20230324090927045.png)
+
+
+
+## CUDA Stream API
+
+- 定义
+
+  cudaStream_tstream
+
+- 创建
+
+  cudaStreamCreate(&stream)
+
+- 数据传输
+
+  cudaMemcpyAsync(dst, src, size, type, stream)
+
+- kernel在流中执行
+
+  kernel_name<<<grid, block, shareMemSize, stream>>>(argument list);
+
+- 同步和查询
+
+  cudaError_t cudaStreamSynchronize(cudaStream_t stream)
+
+  cudaError_t cudaStreamQuery(cudaSstream_t stream)
+
+- 销毁
+
+  cudaError_t cudaStreamDestory(cudaStream_t stream)
+
 
 
 
