@@ -22,7 +22,7 @@ It was the best of times, it was the worst of times.
 
 ## 💭 设计模式
 
-- [Builder](DataStruct/Builder.md)
+- [23种设计模式（持续更）](DataStruct/Builder.md)
 
 ## 🔨 工具
 
