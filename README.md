@@ -35,7 +35,7 @@ It was the best of times, it was the worst of times.
 
 ---
 
-# 🚀 人工智能
+# 🚀 AI
 
 ## 📨 Tensorflow
 
@@ -48,10 +48,12 @@ It was the best of times, it was the worst of times.
 ## 🔋 TensorRT
 
 * [CUDA 与 TensorRT 入门 深蓝学院](CUDA/CUDA_SL.md)
+* [JETSON NANO](JETSON/AI_ON_JETSON_NANO.md)
 
 ---
 
 # 🎨 论文阅读
 
 * [🎉 分享免费下载论文的网站](ToolBox/ShareToFreeDownloadPapers.md)
+* [FaceNet](Paper/facenet.md)
 
