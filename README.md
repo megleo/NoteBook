@@ -47,6 +47,8 @@ It was the best of times, it was the worst of times.
 
 ## 🔋 TensorRT
 
+- [NVIDIA 官方 TensorRT 入门 ](CUDA/NVIDIA_TENSORRT.md)
+
 * [CUDA 与 TensorRT 入门 深蓝学院](CUDA/CUDA_SL.md)
 * [JETSON NANO](JETSON/AI_ON_JETSON_NANO.md)
 
