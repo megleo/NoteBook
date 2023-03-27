@@ -1,13 +1,18 @@
-- [<span class="iconfont icon-icon_fabu"></span> 首页](/README.md)
+- [`<span class="iconfont icon-icon_fabu">` 首页](/README.md)
   - [📌 C](README?id=📌-c)
-  - [☁️ C++](README?id=☁%ef%b8%8f-c)
+  - [☯ C++](README?id=☯-C++)
   - [🐍 Python](README?id=🐍-python)
+  - [🐾 Shell](README?id=🐾-Shell)
+  - [🐋 Docker](README?id=🐋-Docker)
+  - [⏳ 计算机基础](README?id=⏳-计算机基础)
+  - [💭 设计模式](README?id=💭-设计模式)
+  - [📨 Tensorflow](README?id=📨-Tensorflow)
+  - [🍕 PyTorch](README?id=🍕-PyTorch)
+  - [🎞 机器学习](README?id=🎞-机器学习)
   - [🔋 TensorRT](README.md?id=🔋-TensorRT)
-  - [🚀 计算机基础](README?id=🚀-计算机基础)
-  - [📝 面试有招](README?id=📝-面试有招)
-  - [🎨 论文投稿](README?id=🎨-论文投稿)
-  - [🐋 刷题 OJ](README?id=🐋-刷题-oj)
+  - [🎨 论文阅读](README?id=🎨-论文阅读)
   - [🔨 工具 COOL](README?id=🔨-工具-cool)
+  - [🐋 刷题 OJ](README?id=🐋-刷题-oj)
 
 - 玩具项目
   - [MNIST模型C++实现](https://github.com/megleo/cpp_primer)
@@ -26,4 +31,4 @@
 
 - 关于
   - [关于本站](about/README.md)
-  - [关于我](about/Resume.md)
+  - [关于我]()

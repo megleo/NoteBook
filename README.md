@@ -12,26 +12,15 @@ It was the best of times, it was the worst of times.
 
 ## 🐍 Python
 
-## 🐾 shell
+## 🐾 Shell
 
-##  🐋Docker
+## 🐋 Docker
 
-## ⏳ 数据结构
-
-## ⏰ 计算机组成原理
+## ⏳ 计算机基础
 
 ## 💭 设计模式
 
 - [23种设计模式（持续更）](DataStruct/Builder.md)
-
-## 🔨 工具
-
-* [Latex 语法使用指南](ToolBox/LaTex使用指南)
-* [Git 操作指南](ToolBox/Git%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.md)
-* [Vscode 技巧](ToolBox/vscode.md)
-* [vim](ToolBox/vim.md)
-
-## 🔛 无聊刷题LeetCode
 
 ---
 
@@ -57,5 +46,14 @@ It was the best of times, it was the worst of times.
 # 🎨 论文阅读
 
 * [🎉 分享免费下载论文的网站](ToolBox/ShareToFreeDownloadPapers.md)
-* [FaceNet](Paper/facenet.md)
 
+* [2015FaceNet: A Unified Embedding for Face Recognition and Clustering](Paper/facenet.md)
+
+## 🔨 工具
+
+* [Latex 语法使用指南](ToolBox/LaTex使用指南)
+* [Git 操作指南](ToolBox/Git%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97.md)
+* [Vscode 技巧](ToolBox/vscode.md)
+* [vim](ToolBox/vim.md)
+
+## 🔛 无聊刷题LeetCode
