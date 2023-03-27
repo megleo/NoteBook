@@ -32,6 +32,8 @@ It was the best of times, it was the worst of times.
 
 ## 🍕 PyTorch
 
+- [Pytorch常用技巧](Pytorch/Pytorch.md)
+
 ## 🎞 机器学习
 
 ## 🔋 TensorRT
