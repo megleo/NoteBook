@@ -56,4 +56,4 @@ It was the best of times, it was the worst of times.
 * [Vscode 技巧](ToolBox/vscode.md)
 * [vim](ToolBox/vim.md)
 
-## 🔛 无聊刷题LeetCode
+## 🔛 LeetCode

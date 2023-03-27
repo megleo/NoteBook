@@ -1,4 +1,4 @@
-- [`<span class="iconfont icon-icon_fabu">` 首页](/README.md)
+- [首页](/README.md)
 
   - [📌 C](README?id=📌-c)
   - [☯ C++](README?id=☯-C++)
