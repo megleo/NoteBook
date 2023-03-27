@@ -12,8 +12,8 @@
   - [🎞 机器学习](README?id=🎞-机器学习)
   - [🔋 TensorRT](README.md?id=🔋-TensorRT)
   - [🎨 论文阅读](README?id=🎨-论文阅读)
-  - [🔨 工具 COOL](README?id=🔨-工具-cool)
-  - [🐋 刷题 OJ](README?id=🐋-刷题-oj)
+  - [🔨 工具](README?id=🔨-工具)
+  - [🔛 LeetCode](README?id=🔛-LeetCode)
 
 - 玩具项目
   - [MNIST模型C++实现](https://github.com/megleo/cpp_primer)
