@@ -18,9 +18,11 @@ It was the best of times, it was the worst of times.
 
 ## ⏳ 计算机基础
 
+1. [编译原理](CS/Compilers.md)
+
 ## 💭 设计模式
 
-- [23种设计模式（持续更）](DataStruct/Builder.md)
+1. [23种设计模式（持续更）](DataStruct/Builder.md)
 
 ---
 
@@ -29,6 +31,10 @@ It was the best of times, it was the worst of times.
 ## 📨 Tensorflow
 
 - [tflite 常见问题](Tensorflow/tflite.md)
+
+  ### 源码解析系列
+  
+  - [label image](Tensorflow/LableImage.md)
 
 ## 🍕 PyTorch
 
