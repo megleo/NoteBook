@@ -95,3 +95,13 @@ In 5 programming assignments
 - Parsing
 - Semantic analysis
 - Code Generation
+
+
+
+---
+
+## Lexical Analysis
+
+- Token classes correspond to sets of string 
+
+  https://www.bilibili.com/video/BV1NE411376V?t=315.6&p=7
