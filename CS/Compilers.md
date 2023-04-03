@@ -420,7 +420,7 @@ $$
 
 ### 语法分析： 递归下降分析
 
-https://www.bilibili.com/video/BV16h411X7JY?t=12.6&p=43
+![image-20230403193918679](images/image-20230403193918679.png)
 
 
 
@@ -428,6 +428,53 @@ https://www.bilibili.com/video/BV16h411X7JY?t=12.6&p=43
 
 
 
+![image-20230403194522116](images/image-20230403194522116.png)
+
+
+
+![image-20230403194925233](images/image-20230403194925233.png)
+
+
+
+---
+
+### 语法分析： LL（1） 分析算法
+
+![image-20230403201150941](images/image-20230403201150941.png)
+
+
+
+
+
+![image-20230403201433365](images/image-20230403201433365.png)
+
+
+
+ 
+
+
+
+![image-20230403202046178](images/image-20230403202046178.png)
+
+
+
+
+
+![image-20230403202231556](images/image-20230403202231556.png)
+
+
+
+ 
+
+![image-20230403203628531](images/image-20230403203628531.png)
+
+
+
+
+
+#### FIRST 集
+
+ ![image-20230403211316781](images/image-20230403211316781.png)
 
 
 
@@ -435,22 +482,15 @@ https://www.bilibili.com/video/BV16h411X7JY?t=12.6&p=43
 
 
 
+![image-20230403211554076](images/image-20230403211554076.png)
 
 
 
+#### 一般条件下的LL（1）分析表的构造
 
+ 
 
-
-
-
-
-
-
-
-
-
-
-
+https://www.bilibili.com/video/BV16h411X7JY?t=6.6&p=51
 
 
 
