@@ -16,9 +16,21 @@ It was the best of times, it was the worst of times.
 
 ## 🐋 Docker
 
-## ⏳ 计算机基础
+## ⏳ CS 基础
 
-1. [编译原理](CS/Compilers.md)
+**`CS 基础`**
+
+- [编译原理](CS/Compilers.md)
+
+
+
+
+
+**`LLVM 系列`**
+
+- [编译](CS/LLVM/LLVM_Compile.md)
+
+
 
 ## 💭 设计模式
 
