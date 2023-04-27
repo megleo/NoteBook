@@ -257,8 +257,139 @@ queue.Queue可用于多线程之间的、线程安全的数据通信
 ### 代码实战
 
 ```python
-im
+import threading
+import requests
+from bs4 import BeautifulSoup
+import queue
+import time
+import random
+
+urls = ["https://www.cnblogs.com/#p{}".format(page) for page in range(1, 50 + 1)]
+
+
+def craw(url):
+    r = requests.get(url)
+    return r.text
+
+
+def parse(html):
+    soup = BeautifulSoup(html, "html.parser")
+    links = soup.find_all('a', class_="post-item-title")
+    return [(link["href"], link.get_text()) for link in links]
+
+
+def do_craw(url_queue: queue.Queue, html_queue: queue.Queue):
+    while True:
+        url = url_queue.get()
+        html = craw(url)
+        html_queue.put(html)
+        print(threading.currentThread().name, f"craw {url} ", html_queue.qsize())
+        time.sleep(random.randint(1, 2))
+
+
+def do_parse(html_queue: queue.Queue, fout):
+    while True:
+        html = html_queue.get()
+        results = parse(html)
+        for result in results:
+            fout.write(str(result) + "\n")
+        print(threading.currentThread().name, f"result.size: ", len(results), "html_queue.size", html_queue.qsize())
+        time.sleep(random.randint(1, 2))
+
+
+if __name__ == "__main__":
+    url_queue = queue.Queue()
+    html_queue = queue.Queue()
+    for url in urls:
+        url_queue.put(url)
+
+    # 3个生产者
+    for idx in range(3):
+        t = threading.Thread(target=do_craw, args=(url_queue, html_queue), name=f"craw{idx}")
+        t.start()
+
+    fout = open("data.txt", "w")
+    for idx in range(3):
+        t = threading.Thread(target=do_parse, args=(html_queue, fout), name=f"parse{idx}")
+        t.start()
+
 ```
+
+## 线程安全的概念
+
+线程安全指的是某个函数、函数库在多线程环境中被调用时，能够正确地处理多个线程之间的共享变量，使程序功能正确完成。
+
+由于线程的执行随时会发生切换，就造成了不可预料的结果，出现线程安全。
+
+
+
+![image-20230421150207147](images/image-20230421150207147.png)
+
+
+
+ ```python
+ import threading
+ import time
+ 
+ 
+ class Account:
+     def __init__(self, balance):
+         self.balance = balance
+ 
+ 
+ def draw(account, amount):
+     if account.balance >= amount:
+         print(threading.currentThread().name, "取钱成功.")
+         account.balance = account.balance - amount
+         print(threading.currentThread().name, "余额: ", account.balance)
+     else:
+         print(threading.currentThread().name, "取钱失败，余额不足")
+ 
+ 
+ if __name__ == "__main__":
+     account = Account(1000)
+     ta = threading.Thread(target=draw, args=(account, 800), name="ta")
+     tb = threading.Thread(target=draw, args=(account, 800), name="tb")
+     ta.start()
+     tb.start()
+ ```
+
+
+
+## 线程池的原理
+
+### 线程的声明周期
+
+![image-20230422123711978](images/image-20230422123711978.png)
+
+
+
+**新建线程系统需要分配资源、终止线程系统需要回收资源，如果可以重用线程，则可以减去新建/终止的开销。**
+
+
+
+
+
+### 线程池
+
+![image-20230422124226477](images/image-20230422124226477.png)
+
+
+
+> 使用线程池的好处
+>
+> 1. 提升性能： 因为减去了大量新建、终止线程的开销，重用了线程资源；
+> 2. 适用场景：时和处理突发性大量请求或需要大量线程完成的任务、但实际任务处理时间较短。
+> 3. 防御功能： 能有效避免系统中因为创建的线程过多，而导致系统负荷过大相应变慢的问题。
+> 4. 代码优势： 使用线程池的语法比自己创建执行线程更加简洁。
+
+
+
+### ThreadPoolExecutor的使用方法
+
+
+
+![image-20230422125121669](images/image-20230422125121669.png)
 
 
 
