@@ -13,7 +13,9 @@ It was the best of times, it was the worst of times.
 **1. LLVM 系列**
 - [编译原理](CS/Compilers.md)
 - [编译](CS/LLVM/LLVM_Compile.md)
-**2. 设计模式**
+- [Flex && Bison demo](Compilers/demo.md)
+
+ **设计模式**
 1. [23种设计模式（持续更）](DataStruct/Builder.md)
 ---
 # 🚀 AI
