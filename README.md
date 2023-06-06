@@ -34,6 +34,9 @@ It was the best of times, it was the worst of times.
 * [CUDA 与 TensorRT 入门 深蓝学院](CUDA/CUDA_SL.md)
 * [JETSON NANO](JETSON/AI_ON_JETSON_NANO.md)
 ## SNPE （高通）
+
+- [SNPE examples](SNPE/SNPE_Example.md)
+
 ---
 ## 🔨 工具
 * [Latex 语法使用指南](ToolBox/LaTex使用指南)

@@ -45,7 +45,7 @@
 %token BLANK NOT
 ```
 
-### @$
+###  @\$
 
 > `@$`是一个特殊的bison符号，用于表示当前规约动作所对应的位置信息。在bison代码中，`$1->loc = @$.`这一行代码的作用是将当前规约动作的位置信息赋值给语法分析树的一个节点的位置信息。
 
@@ -53,7 +53,7 @@
 $1->loc = @$;
 ```
 
-### $$
+### \$\$
 
 > `$$`表示当前规约动作的结果，也就是`CompUnit`节点的生成结果。
 
@@ -65,3 +65,4 @@ CompUnit: GlobalDecl{
 	;
 ```
 
+> 这个语法定义了CompUnit节点的产生式，它是由GlobalDecl节点构成。具体而言，`$$=new SyntaxTree::Assembly();`创建了一个新的`SyntaxTree::Assembly`类型的节点，即`CompUnit`节点。
