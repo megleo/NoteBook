@@ -36,6 +36,7 @@ It was the best of times, it was the worst of times.
 ## 🐲 SNPE （高通）
 - [SNPE 一](SNPE/SNPE_.md)
 - [SNPE examples](SNPE/SNPE_Example.md)
+- [SNPE Tutorial](SNPE/SNPE_Tutorial.md)
 
 ## 🔨 工具
 * [Latex 语法使用指南](ToolBox/LaTex使用指南)
