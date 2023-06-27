@@ -78,5 +78,53 @@ SNPE将onnx模型转换为dlc的命令很简单，转换失败最主要的原因
 
 ## Model Quantize
 
+## 源码分析
+
+### Get Avaliable Runtime
+
+检测当前的设备是否支持指定的runtime。
+
+`zdl::SNPE::SNPEFactory::isRuntimeAvailable(runtime)`
+
+```c++
+zdl::DlSystem::Runtime_t checkRuntime(zdl::DlSystem::Runtime_t runtime, bool &staticQuantization)
+{
+    static zdl::DlSystem::Version_t Version = zdl::SNPE::SNPEFactory::getLibraryVersion();
+
+    std::cout << "SNPE Version: " << Version.asString().c_str() << std::endl; //Print Version number
+
+   if((runtime != zdl::DlSystem::Runtime_t::DSP) && staticQuantization)
+   {
+      std::cerr << "ERROR: Cannot use static quantization with CPU/GPU runtimes. It is only designed for DSP/AIP runtimes.\n";
+      std::cerr << "ERROR: Proceeding without static quantization on selected runtime.\n";
+      staticQuantization = false;
+   }
+
+    if (!zdl::SNPE::SNPEFactory::isRuntimeAvailable(runtime))
+    {
+        std::cerr << "Selected runtime not present. Falling back to CPU." << std::endl;
+        runtime = zdl::DlSystem::Runtime_t::CPU;
+    }
+
+    return runtime;
+}
+```
+
+### Load Network
+
+### Load UDO
+
+### Set Network Builder Options
+
+### Load Network Inputs
+
+1. Using ITensors 普通的用户内存在被GPU、DSP等设备访问的时候是需要做一次内存拷贝，将普通的用户内存拷贝到相应的硬件内存上去。
+2. Using User Buffers 可以直接被GPU、DSP使用。
+
+Execute the network & Process Output
+
+1. Using ITensors
+2. Using User Buffers
+
 
 
