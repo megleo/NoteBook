@@ -47,3 +47,8 @@ The Qualcomm® [AI Engine Direct](introduction.html#qnn-ai-engine-note) API 旨�
 
 ## Software Architecture
 
+![image-20230718113311799](images/image-20230718113311799.png)
+
+### Device
+
+硬件
