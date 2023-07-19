@@ -1,6 +1,6 @@
-[TOC]
 
-# SNPE
+
+# SNPE Quantization
 
 ## Quantized vs Non-Quantized Models
 
