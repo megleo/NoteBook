@@ -374,7 +374,7 @@
       search: {
         paths: 'auto',
         placeholder: '🔍 搜索',
-        noData: '😒 找不到结果',
+        noData: '找不到结果',
         // Headline depth, 1 - 6
         depth: 6,
         maxAge: 86400000, // 过期时间，单位毫秒，默认一天
@@ -390,7 +390,6 @@
       markdown: {
         renderer: {
           code: function(code, lang, base=null) {
-
             if (lang === "dot") {
               return (
                       '<div class="viz">'+ Viz(code, "SVG")+'</div>'
@@ -454,6 +453,9 @@
   <!-- 复制代码-->
   <script src="http://bytesync.cn/plugin/docsify-copy-code.min.js"></script>
 
+  <!-- Read time and word conuntable -->
+  <script src="http://bytesync.cn/plugin/js/countable.js"></script>
+
   <!-- 回到顶部功能 -->
   <script src="http://bytesync.cn/plugin/jquery.js"></script>
   <script src="http://bytesync.cn/plugin/jquery.goup.js"></script>
@@ -491,16 +493,6 @@
   <script src="http://bytesync.cn/plugin/js/prism-yaml.js"></script>
   <script src="http://bytesync.cn/plugin/js/prism-go.js"></script>
   <script src="http://bytesync.cn/plugin/js/prism-matlab.js"></script>
-
-  <!-- 使用 Gitter 实现一个 IM 即时通讯聊天室功能 -->
-  <!-- 
-  <script>
-    ((window.gitter = {}).chat = {}).options = {
-      room: 'enjoytoshare/community'
-    };
-  </script>
-  <script src="http://bytesync.cn/plugin/sidecar.v1.js" async defer></script>
-  -->
 
   <!-- mouse click -->
   <script src="http://bytesync.cn/plugin/click_heart.js"></script>
