@@ -1,6 +1,6 @@
 # SNPE
 
-[➡ Part4 Quantization](04-QuantizeModel.md)
+[➡ Part4 Quantization](QUALCOMM/SNPE/04-QuantizeModel.md)
 
-[➡ Part5  UDO](05-UDO.md)
+[➡ Part5  UDO](QUALCOMM/SNPE/05-UDO.md)
 
