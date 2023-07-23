@@ -65,6 +65,15 @@ LLVM 利用Pass机制运行许多分析和优化传递。传递的起点是Pass�
 
 为了让Pass manager 更好的工作，知道每个pass之间的依赖关系是非常重要的： 每个pass都可以自己定义他们的依赖，在执行这个pass之前，首先需要先执行analysis 
 
+### instruction simplification example
+如何在LLVM中将指令折叠成更简单的形式。不会创建新的指令。code lib/Analysis/InstructionSimplify.cpp
+例如
+```shell
+sub i32 2, 1 -> 1
+# 32位2， 1相减得到1
+```
+
+
 
 
 
