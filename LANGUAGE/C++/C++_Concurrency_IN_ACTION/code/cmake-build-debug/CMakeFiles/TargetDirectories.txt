@@ -1,0 +1,3 @@
+/home/ts/vscode/NoteBook/LANGUAGE/C++/C++_Concurrency_IN_ACTION/code/cmake-build-debug/CMakeFiles/code.dir
+/home/ts/vscode/NoteBook/LANGUAGE/C++/C++_Concurrency_IN_ACTION/code/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/ts/vscode/NoteBook/LANGUAGE/C++/C++_Concurrency_IN_ACTION/code/cmake-build-debug/CMakeFiles/rebuild_cache.dir
