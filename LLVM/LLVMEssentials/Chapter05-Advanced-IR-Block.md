@@ -56,3 +56,59 @@ Exit:
 }
 ```
 
+### 简化循环
+
+1. 为循环插入一个前置节点(preheader),使得有一条单独的边从循环外部到循环头节点。为循环插入退出节点,使得所有退出节点的前趋节点(predecessor)都来自循环内部。插入前置节点和退出节点有助于后续的循环优化.
+2. 一个循环只有一条回边。如果循环头节点的前趋节点多于两个(来自前置节点和多个循环回路),我们就得调整循环回路。一种方法是插入一个新的节点,所有回边都以它为目标,而这个新节点跳向循环头节点。
+
+![image-20230725093232963](images/image-20230725093232963.png)
+
+### 循环优化 LICM: loop invariant code motion
+
+尽可能多地移出循环体中的代码。移出代码的条件是代码片段在循环中是不变的。
+
+```shell
+define void @func(i32 %i) {
+Entry:
+br label %Loop
+Loop:
+%j = phi i32 [ 0, %Entry ], [ %Val, %Loop ]
+%loopinvar = mul i32 %i, 17 // 移出循环
+%Val = add i32 %j, %loopinvar
+%cond = icmp eq i32 %Val, 0
+br i1 %cond, label %Exit, label %Loop
+Exit:
+ret void
+}
+```
+
+## 标量进化 （不太懂）
+
+标量进化的目的是“**一个标量在程序执行过程中如何变化**“。
+
+一个标量由两个元素建立,一个是变量,一个是常数次运算。
+
+常量进化的主要概念,就是观察一个包含编译时未知元素的标量,分析它在程序执行过程中如何进化,寻找可优化之处。
+
+```shell
+define void @fun() {
+entry:
+br label %header
+header:
+%i = phi i32 [ 1, %entry ], [ %i.next, %body ]
+%cond = icmp eq i32 %i, 10
+br i1 %cond, label %exit, label %body
+body:
+%a = mul i32 %i, 5
+%b = or i32 %a, 1
+%i.next = add i32 %i, 1
+br label %header
+exit:
+ret void
+}
+```
+
+### LLVM 本质函数
+
+一个本质函数(intrinsic)是编译器内建的函数。编译器知道如何以最优化的方式实现它的功能,为特定的后端(backend)替换之为一组机器指令。经常地,这些机器指令内联地插入到代码中,避免函数调用的开销(在很多情况下,我们确实调用库函数。例如,对于 http://llvm.org/docs/LangRef.html#standard-c-library-intrinsics 列出的函数,我们调用 libc)。对于其它的编译器来说,它们也被称为内建函数(built-in)。在 LLVM 中,这些本质函数是在 IR 层次的代码优化过程中产生的(程序中的本质函数可以由前端(frontend)直接生成)。这些函数的名字以前缀“llvm”开头,这是 LLVM 的保留字。这些函数总是外部的,使用者不能在代码中定义它们的函数体。在我们的代码中,我们只能调用这些本质函数。
+
