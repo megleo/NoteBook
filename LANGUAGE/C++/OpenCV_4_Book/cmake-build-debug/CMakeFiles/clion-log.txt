@@ -1,0 +1,5 @@
+/home/ts/software/clion-2022.2.4/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/usr/bin/make -DCMAKE_C_COMPILER=/usr/local/bin/clang -DCMAKE_CXX_COMPILER=/usr/local/bin/clang++ -G "CodeBlocks - Unix Makefiles" -S /home/ts/vscode/NoteBook/LANGUAGE/C++/OpenCV_4_Book -B /home/ts/vscode/NoteBook/LANGUAGE/C++/OpenCV_4_Book/cmake-build-debug
+OpenCV version: 4.4.0
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/ts/vscode/NoteBook/LANGUAGE/C++/OpenCV_4_Book/cmake-build-debug

@@ -78,7 +78,6 @@ Generating Summary csv report
 
      When voting from modules is very high, then aDSP PM sets the core clock to turbo. 
      
-   
    - Effec Q6 Freq(MHz)
    
      The modules will not always utilize the maximum MHz. If there is no processing involved, modules use less MHz.
@@ -86,3 +85,12 @@ Generating Summary csv report
 2. **sysmon_report.html**
 
    ![image-20230727112955628](images/image-20230727112955628.png)
+
+​				A packet is a set of one or more instructions.
+
+MPPS: indicates the number os packets processed per second.
+
+pCPP:  indicates the number of cycles spent to process a packet. if the modules are not optimized, the pCPP will be higher.
+
+
+

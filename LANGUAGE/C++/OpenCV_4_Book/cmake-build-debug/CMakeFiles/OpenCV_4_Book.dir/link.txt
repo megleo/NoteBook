@@ -1,0 +1,1 @@
+/usr/local/bin/clang++ -g CMakeFiles/OpenCV_4_Book.dir/main.cpp.o -o OpenCV_4_Book 
