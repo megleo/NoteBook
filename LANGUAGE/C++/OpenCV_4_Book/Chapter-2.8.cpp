@@ -25,7 +25,7 @@ int main(int argc, char** argv)
 {
     cv::CommandLineParser parser(argc, argv, keys);
     parser.about("Chater 2. v1.0.0");
-    // If requires help show
+
     if (parser.has("help"))
     {
       parser.printMessage();
