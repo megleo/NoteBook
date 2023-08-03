@@ -1,4 +1,8 @@
 /home/ts/vscode/NoteBook/LANGUAGE/C++/OpenCV_4_Book/cmake-build-debug/CMakeFiles/demo2-7.dir
 /home/ts/vscode/NoteBook/LANGUAGE/C++/OpenCV_4_Book/cmake-build-debug/CMakeFiles/demo2-8.dir
+/home/ts/vscode/NoteBook/LANGUAGE/C++/OpenCV_4_Book/cmake-build-debug/CMakeFiles/demo2-10.dir
+/home/ts/vscode/NoteBook/LANGUAGE/C++/OpenCV_4_Book/cmake-build-debug/CMakeFiles/demo3-1.dir
+/home/ts/vscode/NoteBook/LANGUAGE/C++/OpenCV_4_Book/cmake-build-debug/CMakeFiles/demo3-2.dir
+/home/ts/vscode/NoteBook/LANGUAGE/C++/OpenCV_4_Book/cmake-build-debug/CMakeFiles/test.dir
 /home/ts/vscode/NoteBook/LANGUAGE/C++/OpenCV_4_Book/cmake-build-debug/CMakeFiles/edit_cache.dir
 /home/ts/vscode/NoteBook/LANGUAGE/C++/OpenCV_4_Book/cmake-build-debug/CMakeFiles/rebuild_cache.dir

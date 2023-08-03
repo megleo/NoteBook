@@ -57,4 +57,8 @@ set(CMAKE_MAKEFILE_PRODUCTS
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/demo2-7.dir/DependInfo.cmake"
   "CMakeFiles/demo2-8.dir/DependInfo.cmake"
+  "CMakeFiles/demo2-10.dir/DependInfo.cmake"
+  "CMakeFiles/demo3-1.dir/DependInfo.cmake"
+  "CMakeFiles/demo3-2.dir/DependInfo.cmake"
+  "CMakeFiles/test.dir/DependInfo.cmake"
   )

@@ -97,16 +97,64 @@ CMakeFiles/demo2-7.dir/Chapter-2.8.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/demo2-7.dir/Chapter-2.8.cpp.s"
 	/usr/local/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ts/vscode/NoteBook/LANGUAGE/C++/OpenCV_4_Book/Chapter-2.8.cpp -o CMakeFiles/demo2-7.dir/Chapter-2.8.cpp.s
 
+CMakeFiles/demo2-7.dir/Chapter2-10.cpp.o: CMakeFiles/demo2-7.dir/flags.make
+CMakeFiles/demo2-7.dir/Chapter2-10.cpp.o: ../Chapter2-10.cpp
+CMakeFiles/demo2-7.dir/Chapter2-10.cpp.o: CMakeFiles/demo2-7.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ts/vscode/NoteBook/LANGUAGE/C++/OpenCV_4_Book/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/demo2-7.dir/Chapter2-10.cpp.o"
+	/usr/local/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/demo2-7.dir/Chapter2-10.cpp.o -MF CMakeFiles/demo2-7.dir/Chapter2-10.cpp.o.d -o CMakeFiles/demo2-7.dir/Chapter2-10.cpp.o -c /home/ts/vscode/NoteBook/LANGUAGE/C++/OpenCV_4_Book/Chapter2-10.cpp
+
+CMakeFiles/demo2-7.dir/Chapter2-10.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/demo2-7.dir/Chapter2-10.cpp.i"
+	/usr/local/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ts/vscode/NoteBook/LANGUAGE/C++/OpenCV_4_Book/Chapter2-10.cpp > CMakeFiles/demo2-7.dir/Chapter2-10.cpp.i
+
+CMakeFiles/demo2-7.dir/Chapter2-10.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/demo2-7.dir/Chapter2-10.cpp.s"
+	/usr/local/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ts/vscode/NoteBook/LANGUAGE/C++/OpenCV_4_Book/Chapter2-10.cpp -o CMakeFiles/demo2-7.dir/Chapter2-10.cpp.s
+
+CMakeFiles/demo2-7.dir/Chapter3-1.cpp.o: CMakeFiles/demo2-7.dir/flags.make
+CMakeFiles/demo2-7.dir/Chapter3-1.cpp.o: ../Chapter3-1.cpp
+CMakeFiles/demo2-7.dir/Chapter3-1.cpp.o: CMakeFiles/demo2-7.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ts/vscode/NoteBook/LANGUAGE/C++/OpenCV_4_Book/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/demo2-7.dir/Chapter3-1.cpp.o"
+	/usr/local/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/demo2-7.dir/Chapter3-1.cpp.o -MF CMakeFiles/demo2-7.dir/Chapter3-1.cpp.o.d -o CMakeFiles/demo2-7.dir/Chapter3-1.cpp.o -c /home/ts/vscode/NoteBook/LANGUAGE/C++/OpenCV_4_Book/Chapter3-1.cpp
+
+CMakeFiles/demo2-7.dir/Chapter3-1.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/demo2-7.dir/Chapter3-1.cpp.i"
+	/usr/local/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ts/vscode/NoteBook/LANGUAGE/C++/OpenCV_4_Book/Chapter3-1.cpp > CMakeFiles/demo2-7.dir/Chapter3-1.cpp.i
+
+CMakeFiles/demo2-7.dir/Chapter3-1.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/demo2-7.dir/Chapter3-1.cpp.s"
+	/usr/local/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ts/vscode/NoteBook/LANGUAGE/C++/OpenCV_4_Book/Chapter3-1.cpp -o CMakeFiles/demo2-7.dir/Chapter3-1.cpp.s
+
+CMakeFiles/demo2-7.dir/test.cpp.o: CMakeFiles/demo2-7.dir/flags.make
+CMakeFiles/demo2-7.dir/test.cpp.o: ../test.cpp
+CMakeFiles/demo2-7.dir/test.cpp.o: CMakeFiles/demo2-7.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ts/vscode/NoteBook/LANGUAGE/C++/OpenCV_4_Book/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/demo2-7.dir/test.cpp.o"
+	/usr/local/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/demo2-7.dir/test.cpp.o -MF CMakeFiles/demo2-7.dir/test.cpp.o.d -o CMakeFiles/demo2-7.dir/test.cpp.o -c /home/ts/vscode/NoteBook/LANGUAGE/C++/OpenCV_4_Book/test.cpp
+
+CMakeFiles/demo2-7.dir/test.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/demo2-7.dir/test.cpp.i"
+	/usr/local/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ts/vscode/NoteBook/LANGUAGE/C++/OpenCV_4_Book/test.cpp > CMakeFiles/demo2-7.dir/test.cpp.i
+
+CMakeFiles/demo2-7.dir/test.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/demo2-7.dir/test.cpp.s"
+	/usr/local/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ts/vscode/NoteBook/LANGUAGE/C++/OpenCV_4_Book/test.cpp -o CMakeFiles/demo2-7.dir/test.cpp.s
+
 # Object files for target demo2-7
 demo2__7_OBJECTS = \
 "CMakeFiles/demo2-7.dir/Chapter-2.7.cpp.o" \
-"CMakeFiles/demo2-7.dir/Chapter-2.8.cpp.o"
+"CMakeFiles/demo2-7.dir/Chapter-2.8.cpp.o" \
+"CMakeFiles/demo2-7.dir/Chapter2-10.cpp.o" \
+"CMakeFiles/demo2-7.dir/Chapter3-1.cpp.o" \
+"CMakeFiles/demo2-7.dir/test.cpp.o"
 
 # External object files for target demo2-7
 demo2__7_EXTERNAL_OBJECTS =
 
 demo2-7: CMakeFiles/demo2-7.dir/Chapter-2.7.cpp.o
 demo2-7: CMakeFiles/demo2-7.dir/Chapter-2.8.cpp.o
+demo2-7: CMakeFiles/demo2-7.dir/Chapter2-10.cpp.o
+demo2-7: CMakeFiles/demo2-7.dir/Chapter3-1.cpp.o
+demo2-7: CMakeFiles/demo2-7.dir/test.cpp.o
 demo2-7: CMakeFiles/demo2-7.dir/build.make
 demo2-7: /usr/local/opencv4.4.0/lib/libopencv_dnn.so.4.4.0
 demo2-7: /usr/local/opencv4.4.0/lib/libopencv_gapi.so.4.4.0
@@ -124,7 +172,7 @@ demo2-7: /usr/local/opencv4.4.0/lib/libopencv_flann.so.4.4.0
 demo2-7: /usr/local/opencv4.4.0/lib/libopencv_imgproc.so.4.4.0
 demo2-7: /usr/local/opencv4.4.0/lib/libopencv_core.so.4.4.0
 demo2-7: CMakeFiles/demo2-7.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ts/vscode/NoteBook/LANGUAGE/C++/OpenCV_4_Book/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable demo2-7"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ts/vscode/NoteBook/LANGUAGE/C++/OpenCV_4_Book/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable demo2-7"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/demo2-7.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -142,6 +142,58 @@ demo2-8/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo2-8.dir/build.make CMakeFiles/demo2-8.dir/build
 .PHONY : demo2-8/fast
 
+#=============================================================================
+# Target rules for targets named demo2-10
+
+# Build rule for target.
+demo2-10: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 demo2-10
+.PHONY : demo2-10
+
+# fast build rule for target.
+demo2-10/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo2-10.dir/build.make CMakeFiles/demo2-10.dir/build
+.PHONY : demo2-10/fast
+
+#=============================================================================
+# Target rules for targets named demo3-1
+
+# Build rule for target.
+demo3-1: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 demo3-1
+.PHONY : demo3-1
+
+# fast build rule for target.
+demo3-1/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo3-1.dir/build.make CMakeFiles/demo3-1.dir/build
+.PHONY : demo3-1/fast
+
+#=============================================================================
+# Target rules for targets named demo3-2
+
+# Build rule for target.
+demo3-2: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 demo3-2
+.PHONY : demo3-2
+
+# fast build rule for target.
+demo3-2/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo3-2.dir/build.make CMakeFiles/demo3-2.dir/build
+.PHONY : demo3-2/fast
+
+#=============================================================================
+# Target rules for targets named test
+
+# Build rule for target.
+test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test
+.PHONY : test
+
+# fast build rule for target.
+test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/build
+.PHONY : test/fast
+
 Chapter-2.7.o: Chapter-2.7.cpp.o
 .PHONY : Chapter-2.7.o
 
@@ -193,6 +245,111 @@ Chapter-2.8.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo2-8.dir/build.make CMakeFiles/demo2-8.dir/Chapter-2.8.cpp.s
 .PHONY : Chapter-2.8.cpp.s
 
+Chapter2-10.o: Chapter2-10.cpp.o
+.PHONY : Chapter2-10.o
+
+# target to build an object file
+Chapter2-10.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo2-7.dir/build.make CMakeFiles/demo2-7.dir/Chapter2-10.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo2-10.dir/build.make CMakeFiles/demo2-10.dir/Chapter2-10.cpp.o
+.PHONY : Chapter2-10.cpp.o
+
+Chapter2-10.i: Chapter2-10.cpp.i
+.PHONY : Chapter2-10.i
+
+# target to preprocess a source file
+Chapter2-10.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo2-7.dir/build.make CMakeFiles/demo2-7.dir/Chapter2-10.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo2-10.dir/build.make CMakeFiles/demo2-10.dir/Chapter2-10.cpp.i
+.PHONY : Chapter2-10.cpp.i
+
+Chapter2-10.s: Chapter2-10.cpp.s
+.PHONY : Chapter2-10.s
+
+# target to generate assembly for a file
+Chapter2-10.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo2-7.dir/build.make CMakeFiles/demo2-7.dir/Chapter2-10.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo2-10.dir/build.make CMakeFiles/demo2-10.dir/Chapter2-10.cpp.s
+.PHONY : Chapter2-10.cpp.s
+
+Chapter3-1.o: Chapter3-1.cpp.o
+.PHONY : Chapter3-1.o
+
+# target to build an object file
+Chapter3-1.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo2-7.dir/build.make CMakeFiles/demo2-7.dir/Chapter3-1.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo3-1.dir/build.make CMakeFiles/demo3-1.dir/Chapter3-1.cpp.o
+.PHONY : Chapter3-1.cpp.o
+
+Chapter3-1.i: Chapter3-1.cpp.i
+.PHONY : Chapter3-1.i
+
+# target to preprocess a source file
+Chapter3-1.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo2-7.dir/build.make CMakeFiles/demo2-7.dir/Chapter3-1.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo3-1.dir/build.make CMakeFiles/demo3-1.dir/Chapter3-1.cpp.i
+.PHONY : Chapter3-1.cpp.i
+
+Chapter3-1.s: Chapter3-1.cpp.s
+.PHONY : Chapter3-1.s
+
+# target to generate assembly for a file
+Chapter3-1.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo2-7.dir/build.make CMakeFiles/demo2-7.dir/Chapter3-1.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo3-1.dir/build.make CMakeFiles/demo3-1.dir/Chapter3-1.cpp.s
+.PHONY : Chapter3-1.cpp.s
+
+Chapter3-2.o: Chapter3-2.cpp.o
+.PHONY : Chapter3-2.o
+
+# target to build an object file
+Chapter3-2.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo3-2.dir/build.make CMakeFiles/demo3-2.dir/Chapter3-2.cpp.o
+.PHONY : Chapter3-2.cpp.o
+
+Chapter3-2.i: Chapter3-2.cpp.i
+.PHONY : Chapter3-2.i
+
+# target to preprocess a source file
+Chapter3-2.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo3-2.dir/build.make CMakeFiles/demo3-2.dir/Chapter3-2.cpp.i
+.PHONY : Chapter3-2.cpp.i
+
+Chapter3-2.s: Chapter3-2.cpp.s
+.PHONY : Chapter3-2.s
+
+# target to generate assembly for a file
+Chapter3-2.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo3-2.dir/build.make CMakeFiles/demo3-2.dir/Chapter3-2.cpp.s
+.PHONY : Chapter3-2.cpp.s
+
+test.o: test.cpp.o
+.PHONY : test.o
+
+# target to build an object file
+test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo2-7.dir/build.make CMakeFiles/demo2-7.dir/test.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/test.cpp.o
+.PHONY : test.cpp.o
+
+test.i: test.cpp.i
+.PHONY : test.i
+
+# target to preprocess a source file
+test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo2-7.dir/build.make CMakeFiles/demo2-7.dir/test.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/test.cpp.i
+.PHONY : test.cpp.i
+
+test.s: test.cpp.s
+.PHONY : test.s
+
+# target to generate assembly for a file
+test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/demo2-7.dir/build.make CMakeFiles/demo2-7.dir/test.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/test.cpp.s
+.PHONY : test.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -201,14 +358,30 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... demo2-10"
 	@echo "... demo2-7"
 	@echo "... demo2-8"
+	@echo "... demo3-1"
+	@echo "... demo3-2"
+	@echo "... test"
 	@echo "... Chapter-2.7.o"
 	@echo "... Chapter-2.7.i"
 	@echo "... Chapter-2.7.s"
 	@echo "... Chapter-2.8.o"
 	@echo "... Chapter-2.8.i"
 	@echo "... Chapter-2.8.s"
+	@echo "... Chapter2-10.o"
+	@echo "... Chapter2-10.i"
+	@echo "... Chapter2-10.s"
+	@echo "... Chapter3-1.o"
+	@echo "... Chapter3-1.i"
+	@echo "... Chapter3-1.s"
+	@echo "... Chapter3-2.o"
+	@echo "... Chapter3-2.i"
+	@echo "... Chapter3-2.s"
+	@echo "... test.o"
+	@echo "... test.i"
+	@echo "... test.s"
 .PHONY : help
 
 
