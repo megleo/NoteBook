@@ -119,7 +119,64 @@ UDO Config Field Description
 
 UDO Package 主要是由一个注册库和多个实现库组成。主要的想法是注册库包含算子性质的信息，实现库则包含执行算子所需要的操作。UDO Package可以由一个UDO配置文件定义，其中包括操作和路径的文本规范，最终帮助定义表示UDO包的目录结构。UDO Package的定义将在此章表示，创建UDO Package部分将在下一章节。
 
+```SHELL
+(base) ts@menglei:~/udo/SoftmaxUdoPackage$ tree -L 3
+.
+├── common.mk
+├── config
+│   └── Softmax_v68.json
+├── include
+│   └── utils
+│       ├── IUdoOpDefinition.hpp
+│       ├── UdoMacros.hpp
+│       └── UdoUtil.hpp
+├── jni
+│   ├── Android.mk
+│   ├── Application.mk
+│   └── src
+│       ├── CPU
+│       ├── DSP_V68
+│       ├── GPU
+│       ├── reg
+│       └── utils
+├── libs
+│   ├── arm64-v8a
+│   │   ├── libc++_shared.so
+│   │   ├── libUdoSoftmaxUdoPackageImplCpu.so
+│   │   └── libUdoSoftmaxUdoPackageReg.so
+│   ├── dsp_v68
+│   │   └── libUdoSoftmaxUdoPackageImplDsp.so
+│   └── x86-64_linux_clang
+│       ├── libUdoSoftmaxUdoPackageImplCpu.so
+│       ├── libUdoSoftmaxUdoPackageImplDsp.so
+│       └── libUdoSoftmaxUdoPackageReg.so
+├── Makefile
+└── obj
+    └── local
+        ├── arm64-v8a
+        ├── dsp_v68
+        └── x86-64_linux_clang
+```
 
+```shell
+source ${QNN_ROOT}bin/envsetup.sh
+source ${SNPE_ROOT}bin/envsetup.sh
+export SNPE_UDO_ROOT=${SNPE_ROOT}/share/SNPE/SnpeUdo
+export PYTHONPATH=$PYTHONPATH:/opt/qcom/aistack/snpe/2.12.0.230626/lib/python
+export LD_LIBRARY_PATH=/home/ts/anaconda3/envs/py3.8/lib
+```
+
+```SHELL
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/ts/udo/SoftmaxUdoPackage/libs/x86-64_linux_clang
+snpe-tensorflow-to-dlc -i tensorflow/inception_v3_2016_08_28_frozen.pb -d input 1,299,299,3 --out_node InceptionV3/Predictions/Reshape_1 --udo_config_paths $SNPE_ROOT/examples/SNPE/NativeCpp/UdoExample/Softmax/config/Softmax_v68.json -o dlc/inception_v3_udo.dlc
+snpe-dlc-quantize --input_dlc dlc/inception_v3_udo.dlc --input_list target_raw_list.txt --udo_package_path /home/ts/udo/SoftmaxUdoPackage/libs/x86-64_linux_clang/libUdoSoftmaxUdoPackageReg.so  --output_dlc dlc/inception_v3_udo_qantized.dlc 
+```
+
+
+
+```shell
+snpe-net-run --container dlc/inception_v3_udo_qantized.dlc --input_list target_raw_list.txt --udo_package_path /home/ts/udo/SoftmaxUdoPackage/libs/x86-64_linux_clang/libUdoSoftmaxUdoPackageReg.so
+```
 
 
 
