@@ -1,3 +1,63 @@
+## SystemC环境搭建
+
+https://www.accellera.org/downloads/standards/systemc
+
+```
+./configure
+make
+
+```
+
+测试
+
+```cmake
+cmake_minimum_required(VERSION 3.12)
+project(HelloWorld)
+
+set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")
+
+# 设置SystemC库的路径
+set(SYSTEMC_HOME "/home/ts/software/systemc-2.3.3")
+set(SystemC_INCLUDE_DIRS "${SYSTEMC_HOME}/include")
+set(SystemC_LIBRARY_DIRS "${SYSTEMC_HOME}/lib-linux64")
+set(SystemC_LIBRARIES "-lsystemc")
+
+# 添加可执行文件
+add_executable(demo main.cpp)
+
+# 设置编译器选项和库路径
+target_include_directories(demo PRIVATE ${SystemC_INCLUDE_DIRS})
+target_link_directories(demo PRIVATE ${SystemC_LIBRARY_DIRS})
+target_link_libraries(demo PRIVATE ${SystemC_LIBRARIES})
+```
+
+```c++
+#include <systemc.h>
+
+// HelloWorld模块
+SC_MODULE(HelloWorld) {
+    SC_CTOR(HelloWorld) {
+        // 在构造函数中输出Hello World!
+        cout << "Hello World!" << endl;
+    }
+};
+
+// 主函数
+int sc_main(int argc, char* argv[]) {
+    // 创建HelloWorld实例
+    HelloWorld hello("hello");
+
+    // 运行仿真
+    sc_start();
+
+    return 0;
+}
+
+```
+
+
+
 ## 02. Fundamentals of SystemC
 
 ### 2.1 Introduction
@@ -65,7 +125,11 @@ SystemC 使用接口、端口和通道来提供更高抽象级别的进程之间
 
 #### Interface
 
-接口包含一组操作，指定了函数名和函数参数，以及返回名。在SystemC中所有的接口都必须直接或者间接的从sc_interface 类中派生。这个基类提供了一个续汉书register_port(), 当端口连接到通道时（通过接口），虚函数register_port()将会被调用。这个函数的参数是： 一个port对象的引用，port对象期望的接口的类型名字。The type name 源自动态类型信息，这个信息能保证端口绑定到通道的合法性。
+接口包含一组操作，指定了函数名和函数参数，以及返回名。
 
-让我们来看两个简单的信号接口：sc_signal_in_if\<T\>, sc_signal_inout_if\<T\> @
+在SystemC中所有的接口都必须直接或者间接的从sc_interface 类中派生。这个基类提供了一个虚函数register_port(), 当端口连接到通道时（通过接口），虚函数register_port()将会被调用。这个函数的参数是： 一个port对象的引用，port对象期望的接口的类型名字。The type name 源自动态类型信息，这个信息能保证端口绑定到通道的合法性。
+
+#### Port
+
+良好的设计实践建议, 模型应该与其环境交互,通过定义良好的边界进行交互.
 
