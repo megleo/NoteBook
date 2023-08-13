@@ -11,5 +11,4 @@
 ### 💫 [DL FRAMEWORK](DL_FRAMEWORK/README.md)
 ### 🔋 [NVIDIA](NVIDIA/README.md)
 ### 🐲 [QUALCOMM](QUALCOMM/README.md)
-### 🔨 [工具](TOOL/README.md)
 ### 🔛 [LeetCode](LeetCode/README.md)
