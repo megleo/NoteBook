@@ -2,10 +2,14 @@
 
 **This section primarily covers the specific content related to the grammar of commonly used languages.**
 
-### 📌 C
+### 📌 [C](LANGUAGE/C/ README.md)
 
-###  ☯ C++
+###  ☯ [C++](LANGUAGE/C++/ README.md)
 
-###  🐍 [Python](Python/README.md)
+### 🍾[CMAKE](LANGUAGE/CMAKE/ README.md)
 
-###  🐾 Shell
+### ⛔ [Git](LANGUAGE/Git/ README.md)
+
+###  🐍 [Python](LANGUAGE/Python/README.md)
+
+### 🏇 [SystemC](LANGUAGE/SystemC/README.md)

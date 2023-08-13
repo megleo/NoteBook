@@ -1,4 +1,6 @@
-## SystemC 
+## FORTE DESIGN SYSTEMS 
+
+## Learning SystemC 
 
 ### Introduction
 
@@ -115,7 +117,55 @@ SystemC supports three kinds of threads.
 
  
 
-### Handshaking
+### Handshaking Signals
+
+![image-20230813103158381](images/image-20230813103158381.png)
 
 ![image-20230812180151966](images/image-20230812180151966.png)
 
+
+
+### TB Measurements
+
+![image-20230813110547990](images/image-20230813110547990.png)
+
+### Compiling and Running Simulations
+
+#### SystemC Compilation
+
+C++ class library
+
+- Build simulation executable with a C compiler
+- GNU C Compiler (gcc)
+  - Found on most any workstation
+
+SystemC Compilation
+
+- gcc needs
+
+  - Executable name
+
+    - -o switch
+
+  - List of source files
+
+  - Include directories
+
+    - Location of design source 
+
+    - Location of SystemC source
+
+      -I switch
+
+  - Library directory
+  
+    - Location of SystemC archive.
+  
+      -L  switch
+  
+  - Libraries to link
+  
+    - SystemC, standard C++ and math
+    - -l switch
+  
+    
