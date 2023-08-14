@@ -119,3 +119,63 @@ $$
 
 这是非常坏的情况,我们希望预测的时候特别快,训练的时候可以容忍慢.
 
+### K-Nearest Neighbors
+
+Instead of copying label from nearest neighbor, take majoruty vote from K closest points.
+
+### K-Nearest Neighbors:Dsitance Metric
+
+#### L1 (Manhattan) distance
+
+$$
+d_{1}(I_{1}, I_{2}) = \sum_{p}|I_{1}^{p} - I_{2}^{p}|
+$$
+
+![image-20230814205958619](images/image-20230814205958619.png)
+
+#### L2 (Euclidean) distance
+
+$$
+d_2(I_1, I_2) = \sqrt{\sum_{p}(I_{1}^{p} - I_{2}^{p})^2}
+$$
+
+![image-20230814210220316](images/image-20230814210220316.png)
+
+#### KNN Distance Metric
+
+![image-20230814210516778](images/image-20230814210516778.png)
+
+#### Hyperparameters
+
+1. What is the best value of k to use?
+
+2. What is the best distance to use
+
+   These are hyperparameters: choices about the algorithm that we set rather than learn.
+
+> Very problem-dependaent .Must try them all out and see what works best.
+
+#### Setting Hyperparameters
+
+1. Choose hyperparameters that work best on the data
+
+   > Bad: K = q always works perfectly on training data
+   >
+   > 我们在乎的是模型在未见过的数据上的表现能力, 而不是尽力拟合训练集.
+
+   ![image-20230814211548492](images/image-20230814211548492.png)
+
+2. Split data into train data and test, choose hyperparameters that work best on test data.
+
+   ![image-20230814211639756](images/image-20230814211639756.png)
+
+   > BAD: No idea how algorithm will perform on new data.
+
+3. Split data into train, val, and test; choose hyperaprameters on val and evaluate data.
+
+   ![image-20230814211932068](images/image-20230814211932068.png)
+
+   https://www.bilibili.com/video/BV1nJ411z7fe?t=631.1&p=5
+
+
+
