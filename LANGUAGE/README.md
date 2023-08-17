@@ -6,5 +6,5 @@
 ###  ☯ [C++](LANGUAGE/C++/README.md)
 ### 🍾 [CMAKE](LANGUAGE/CMAKE/README.md)
 ### ⛔ [Git](LANGUAGE/Git/README.md)
-###  🐍 [Python](LANGUAGE/Python/README.md)
+###  🐍 [Python](LANGUAGE/PYTHON/README.md)
 ### 🏇 [SystemC](LANGUAGE/SystemC/README.md)

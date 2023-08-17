@@ -6,8 +6,6 @@
 
 ![image-20230812105105399](images/image-20230812105105399.png)
 
-
-
 ### Lets Get started
 
 ```SystemC
@@ -167,5 +165,3 @@ SystemC Compilation
   
     - SystemC, standard C++ and math
     - -l switch
-  
-    
