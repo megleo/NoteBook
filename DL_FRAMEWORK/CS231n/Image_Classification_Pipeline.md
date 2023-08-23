@@ -175,7 +175,48 @@ $$
 
    ![image-20230814211932068](images/image-20230814211932068.png)
 
-   https://www.bilibili.com/video/BV1nJ411z7fe?t=631.1&p=5
+4. Cross-Validation
+
+   Split data into folds. Try each fold as validation and average the results.
+
+   ![image-20230821090454102](images/image-20230821090454102.png)
+
+   Useful for small datasets, but not used too frequently in deep learning.
+
+   > 测试集是否存在不能很好的表示现实世界中的数据?
+   >
+   > 测试集的统计学假设就是: 数据集是相互独立的,服从同一分布的, 这样各个数据集都是来自同一分布的,
+
+### K-Nearest Neighbor on images never used
+
+- Very slow at test time
+- Distance metrics on pixels are not informative.
+
+![image-20230821091715444](images/image-20230821091715444.png)
+
+All 3 image have same L2 distance to the one on the left.
+
+- Curse of dimensionality 维度灾难
+
+  ![image-20230821092240734](images/image-20230821092240734.png)
+
+  
+
+## Linear classifiers
+
+#### Parametric Approach
+
+![image-20230821093841211](images/image-20230821093841211.png)
+
+#### Example with an image with 4 pixels and 3 classes. cat/dog/ship
+
+![image-20230821095041597](images/image-20230821095041597.png)
+
+#### Interpreting a Linear Classifier
+
+![image-20230821101055311](images/image-20230821101055311.png)
+
+
 
 
 

@@ -10,5 +10,7 @@
 
 ### [🛎 Image Classification Pipeline](DL_FRAMEWORK/CS231n/Image_Classification_Pipeline.md) 
 
+### [🛎 Loss Function and Optimization](DL_FRAMEWORK/CS231n/Loss_And_Optimization.md) 
+
 
 
