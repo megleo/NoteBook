@@ -164,4 +164,4 @@ SystemC Compilation
   - Libraries to link
   
     - SystemC, standard C++ and math
-    - -l switch
+    - > -l switch
