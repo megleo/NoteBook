@@ -2,11 +2,9 @@
 
 ## 📚 Blog
 
-技术博客
+个人技术博客
 
 ## 🐼 Me
-
-
 
 ## 💌 联系
 
@@ -22,6 +20,10 @@
 
 - **知乎：** [https://www.zhihu.com/people/megleo/](https://www.zhihu.com/people/megleo)
 
-- **微信公众号：**
+- **微信公众号：** AI技术指北
 
+  ![weixingongzhonghao.png](images/weixingongzhonghao.png)
+  
+  
+  
   <div ><img src="" width="200" height="200" /></div>

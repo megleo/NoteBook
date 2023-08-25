@@ -71,6 +71,22 @@ Regularization: Model should be simple, so it works on test data.
    $$
    ![image-20230824205348667](images/image-20230824205348667.png)
 
-### Softmax Classifier
+### Softmax Classifier(Multinomial Logistic Regression)
 
-https://www.bilibili.com/video/BV1nJ411z7fe?t=2421.7&p=7
+$$
+scores = unnormalized\ log\ probabulities\ of the\ classes\\
+P(Y=k|X=x_i) = \frac{e^{s_k}}{\sum_{j} e^{s_j}} \\
+where\ s = f(x_i; W)
+$$
+
+Want to maximize the log likehood, or for a loss function to minimize the negative log lokelihood of the correct class;
+$$
+L_i = -log\ P(Y=y_i| X=x_i)
+$$
+
+> Softmax classifier损失值是0, 最大为无穷大.
+>
+> 概率之和为1
+
+![image-20230825091244142](images/image-20230825091244142.png)
+
