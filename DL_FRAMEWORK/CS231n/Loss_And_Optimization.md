@@ -90,3 +90,17 @@ $$
 
 ![image-20230825091244142](images/image-20230825091244142.png)
 
+## 优化
+
+### 策略1: 随机搜索
+
+BAD
+
+### 策略2: Follow the slope(坡)
+
+In 1-dimension, the derivative of a function:
+$$
+\frac{df(x)}{dx} \ = {lim}_{h->0}\  \frac {f(x+h) - f(x)}{h}
+$$
+ ![image-20230825125227101](images/image-20230825125227101.png)
+
