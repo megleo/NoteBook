@@ -13,3 +13,5 @@
 ## [🛎 Loss Function and Optimization](DL_FRAMEWORK/CS231n/Loss_And_Optimization.md) 
 
 ## [🛎 Convolutional Neural Networks](DL_FRAMEWORK/CS231n/ConvolutionalNeuralNetworks.md) 
+
+## [🛎 Training Neural Networks](DL_FRAMEWORK/CS231n/Training_Neural_Networks.md) 
