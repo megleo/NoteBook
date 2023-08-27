@@ -3,6 +3,7 @@
 `一定要将作业做完!!!`
 
 1. 一些别人的答案 https://github.com/linxiaow/EECS498-Deep-Learning-for-Vision
+1. http://cs231n.stanford.edu/2017/
 
 ## [🛎 Introduce CNN](DL_FRAMEWORK/CS231n/Introduce.md)
 
