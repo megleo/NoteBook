@@ -121,45 +121,6 @@ UDO Config Field Description
     
     - **UDO_PACKAGE_NAME:** The name of the UDO Package, which can be any valid string.1
 
-## Preparing a model with UDO
-
-### Convert a DLC with UDO
-
-1. Convert Tennsorflow with UDO to dlc
-
-   snpe-<framework>-to-dlc 工具提供了--udo_config_paths 选项来支持UDO功能，输入UDO配置文件。
-
-   ```shell
-   snpe-tensorflow-to-dlc -i <input tensorflow-model>
-   												-d <input-name> <input-dim>
-   												--udo_config_paths <input-model.json>
-   												-o <output-model.dlc>			
-   ```
-
-2. Converting ONNX with UDO to dlc
-
-   ```shell
-   snpe-onnx-to-dlc -i <input onnx-model>
-   												--udo_config_paths <input-model.json>
-   												-o <output-model.dlc>			
-   ```
-
-### Quantize a DLC with UDO
-
-可以通过snpe-dlc-quantize 量化具有UDO算子的dlc模型。 需要先完成Creating a UDO Package 和 Compiling a UDO package.
-
-```shell
-snpe-dlc-quantize --input_dlc <model.dlc>
-                  --input_list <input-list.txt>
-                  --udo_package_path <udo-registration-lib>
-                  --output_dlc <quantized-model.dlc>
-```
-
-NOTE：
-
-1. --udo_package_path 指的是允许用户占地ingUDO注册库的绝对路径。
-2. 还需要更新LD_LIBRARY_PATH。
-
 ## Defining a UDO Package
 
 **UDO Package 主要是由一个注册库和多个实现库组成。主要的想法是注册库包含算子性质的信息，实现库则包含执行算子所需要的操作。**
@@ -496,9 +457,44 @@ The expected artifact after compiling for Android ARM architecture is
 
 Note: The command must be run from the package root.
 
-### Preparing a model with UDO
+## Preparing a model with UDO
 
-本节讨论使用用户定义操作（UDO）转换框架模型所需的步骤。
+### Convert a DLC with UDO
+
+1. Convert Tennsorflow with UDO to dlc
+
+   snpe-<framework>-to-dlc 工具提供了--udo_config_paths 选项来支持UDO功能，输入UDO配置文件。
+
+   ```shell
+   snpe-tensorflow-to-dlc -i <input tensorflow-model>
+   												-d <input-name> <input-dim>
+   												--udo_config_paths <input-model.json>
+   												-o <output-model.dlc>			
+   ```
+
+2. Converting ONNX with UDO to dlc
+
+   ```shell
+   snpe-onnx-to-dlc -i <input onnx-model>
+   												--udo_config_paths <input-model.json>
+   												-o <output-model.dlc>			
+   ```
+
+### Quantize a DLC with UDO
+
+可以通过snpe-dlc-quantize 量化具有UDO算子的dlc模型。 需要先完成Creating a UDO Package 和 Compiling a UDO package.
+
+```shell
+snpe-dlc-quantize --input_dlc <model.dlc>
+                  --input_list <input-list.txt>
+                  --udo_package_path <udo-registration-lib>
+                  --output_dlc <quantized-model.dlc>
+```
+
+NOTE：
+
+1. --udo_package_path 指的是允许用户占地ingUDO注册库的绝对路径。
+2. 还需要更新LD_LIBRARY_PATH。
 
 
 

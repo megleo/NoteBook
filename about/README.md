@@ -24,6 +24,3 @@
 
   ![weixingongzhonghao.png](images/weixingongzhonghao.png)
   
-  
-  
-  <div ><img src="" width="200" height="200" /></div>
