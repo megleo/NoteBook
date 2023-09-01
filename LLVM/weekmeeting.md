@@ -1,4 +1,4 @@
-# Week Meeting
+# ttWeek Meeting
 
 ## 0427
 1. 编译LLVM环境，已经能够在ubuntu18.04 LTS上成功运行。
@@ -25,11 +25,6 @@
 
   为了生成LLVM IR， 在每个AST类中声明了一个虚函数codegen(). 每个派生类去实现这个函数
   
-  
-  
-  
-
-
 
 ## 0413
 
