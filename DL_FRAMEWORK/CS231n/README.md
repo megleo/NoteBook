@@ -16,3 +16,7 @@
 ## [🛎 Convolutional Neural Networks](DL_FRAMEWORK/CS231n/ConvolutionalNeuralNetworks.md) 
 
 ## [🛎 Training Neural Networks](DL_FRAMEWORK/CS231n/Training_Neural_Networks.md) 
+
+## [🛎 训练神经网络上 批量归一化](DL_FRAMEWORK/CS231n/6-BatchNormal.md)
+
+##  
