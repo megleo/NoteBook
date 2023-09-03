@@ -19,4 +19,4 @@
 
 ## [🛎 训练神经网络上 批量归一化](DL_FRAMEWORK/CS231n/6-BatchNormal.md)
 
-##  
+## [🛎 优化方法](DL_FRAMEWORK/CS231n/07-more_powerful_optimization.md) 
