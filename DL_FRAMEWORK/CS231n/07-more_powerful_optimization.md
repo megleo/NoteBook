@@ -1,4 +1,4 @@
-## More powerful optimization
+# More powerful optimization
 
 ```python
 while true
@@ -127,4 +127,63 @@ $$
 
 如何提高单个模型的性能？
 
-https://www.bilibili.com/video/BV1nJ411z7fe?t=35.7&p=16
+**在模型中加入一些成分，来防止模型过拟合**
+
+### Regularization: 在损失函数中添加正则化
+
+$$
+L = \frac{1}{N}\sum^{N}_{i=1}\sum_{j\neq y_{i}} max(0, f(x_i; W)_j - f(x_i; W)_(y_i) + 1)  + \lambda R(W)
+$$
+
+In common use 
+
+L2 regularization
+$$
+R(W) = \sum_{k}\sum_{l}W_{k, l}^2
+$$
+L1 regularization
+$$
+R(W) = \sum_{k}\sum_{l}|W_{k, l}|
+$$
+Elastic net (L1 + L2)
+$$
+R(W)=\sum_{k}\sum_{l} \beta W_{k, l}^{2} + |W_{k, l}|
+$$
+
+### Dropout
+
+在每次前向传播过程中，随机设置一些神经元为0， Dropout概率为超参数，常见值为0.5
+
+![image-20230904084932551](images/image-20230904084932551.png)
+
+```python
+p = 0.5 # probability of keeping a unit activate, higher = less dropout
+def train_step(X):
+    """X contains the data"""
+    # forward pass for example 3 layer neural network
+    H1 = np.maximum(0, np.dot(W1, X) + b1)
+    U1 = np.random.rand(*H1.shape) < p	# first dropout mask
+    H1 *= U1
+    H2 = np.maximum(0, np.dot(W2, H1) +b2)
+    U2 = np.random.rand(*H2.shape) < p
+    H2 *= U2
+    out = np.dot(W3, H2) + b3
+    
+```
+
+1. How can this possibly be a good idea?
+
+   - Dropout 避免了特征间的相互适应。
+   - Dropout 是训练一个大的模型集合（共享参数）
+
+   ![image-20230904092332633](images/image-20230904092332633.png)
+
+   ### Regularization Data Augmentation 数据增强
+
+   随机裁剪图片
+
+   残差网络
+
+   ## Transfer Learning
+
+   https://www.bilibili.com/video/BV1nJ411z7fe?t=22.8&p=17
