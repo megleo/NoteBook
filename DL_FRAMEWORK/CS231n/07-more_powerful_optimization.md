@@ -184,6 +184,25 @@ def train_step(X):
 
    残差网络
 
-   ## Transfer Learning
+   ## Transfer Learning 迁移学习
 
-   https://www.bilibili.com/video/BV1nJ411z7fe?t=22.8&p=17
+   **You need a lot of a data if you want to train/use CNNs**
+   
+   大模型+小数据就非常容易过拟合。
+   
+   ![image-20230905084727983](images/image-20230905084727983.png)
+   
+   ![image-20230905084950396](images/image-20230905084950396.png)
+   
+   ![image-20230905085206340](images/image-20230905085206340.png)
+
+
+
+
+
+
+
+
+
+
+

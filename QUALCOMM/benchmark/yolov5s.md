@@ -42,7 +42,10 @@
    export ADSP_LIBRARY_PATH="/data/local/tmp/snpebm/artifacts/aarch64-android/lib;/system/lib/rfsa/adsp;/usr/lib/rfsa/adsp;/system/vendor/lib/rfsa/adsp;/dsp;/etc/images/dsp;"
    cd /data/local/tmp/snpebm/yolov5
    rm -rf output
-   /data/local/tmp/snpebm/artifacts/aarch64-android/bin/snpe-parallel-run --container yolov5s_quant.dlc   --input_list target_list.txt --perf_profile burst --cpu_fallback false --enable_init_cache --userbuffer_tf8 --profiling_level basic --duration 20 --use_dsp --output_dir sample_output 
+   
+   /data/local/tmp/snpebm/artifacts/aarch64-android/bin/snpe-throughput-net-run --container yolov5s_16_quant_cache.dlc --duration 20 --use_dsp --userbuffer_tf8 --enable_init_cache --perf_profile burst
+   
+   /data/local/tmp/snpebm/artifacts/aarch64-android/bin/snpe-throughput-net-run --container vgg19_16.dlc    --duration 20 --use_gpu --enable_init_cache --perf_profile burst
    ```
-
+   
    ![image-20230902161214916](images/image-20230902161214916.png)
