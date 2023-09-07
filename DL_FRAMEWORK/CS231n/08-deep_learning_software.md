@@ -52,14 +52,34 @@ grad_y = x*grad_a
 
    ## Static graphs vs Dynamic graphs
 
+   > Tensorflow: Build graph once, the run many times(static)
+   >
+   > 
+   >
+   > PyTorch: Each forward pass defines a new graph. Dynamic
+
+   
+
    使用静态图，框架可以在运行之前做优化图
 
    ![image-20230906095021398](images/image-20230906095021398.png)
 
    ### Static vs Dynamic: Serialization 执行序列化
 
-   1. Static
+   1. 静态
 
+      一旦构建了图形，就可以序列话它并运行它，而不需要构建图形的代码
       
-
+   2. 动态
    
+      图的构建和执行是交织在一起的，所以总是需要保留代码
+   
+   ### static VS Dynamic : Conditional
+   
+   ![image-20230907082556707](images/image-20230907082556707.png)
+   
+   ### Static vs Dynamic: Loops
+   
+   ![image-20230907083045383](images/image-20230907083045383.png)
+
+ 
