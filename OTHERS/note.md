@@ -10,6 +10,10 @@ ThunderSoft01.
 
 3082298291@qq.com ThunderSoft01
 
+jetbrans
+
+menglei@bupt.edu.cn Ml@bupt.
+
 ---
 
 ### VPN
@@ -32,7 +36,7 @@ Please use our legacy V1 App for connections in China If the version downloaded 
 > **MacOS:** https://mirror3.reliablehosting.com/mac/StrongVPN_Mac-latest.dmg
 > **Android:** https://mirror3.reliablehosting.com/android/1.7.0.apk
 
- 
+
 **服务器更换：Server Change:**
 
 > 1） Windows 请选择“ Change Location " - "By Server" 并选择 OpenVPN 服务器 进行更换, 请使用TCP protocol。
