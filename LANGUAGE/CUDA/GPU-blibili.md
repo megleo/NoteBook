@@ -162,5 +162,71 @@ target_compile_options(main PUBLIC $<$<COMPILE_LANGUAGE:CUDA>:--expt-relaxed-con
 
 ![image-20230923181823500](images/image-20230923181823500.png)
 
+## C++ 封装
 
+### std::vector 的秘密： 第二模板参数
 
+- std::vector 作为模板类，其实由两个模板参数， std::vector <T, Allocator<T>>
+- 其中Allocator<T>负责分配和释放内存，初始化T对象等。
+- Allocator 有如下几个成员函数
+  - T* allocator(size_t n) // 分配长度为n, 类型为T的数组， 返回其起始地址。
+  - void deallocate(T *p, size_t n) // 释放长度为n, 起始地址为p, 类型为T的数组。
+
+### 抽象的std::allocator 接口
+
+- vector 会调用std::alloctor<T> 的allocate/deallocate成员函数， 他们有回去调用标准库的malloc/free函数，去分配和释放内存。
+
+- 可以通过自己定义一个和std::allocator<T>一样具有allocate/deallocate成员的模板类， 这样就可以通过vector的机制，让他们在CUDA的内存上进行申请和释放，
+
+  ```cuda
+  #include <cstdio>
+  #include <cuda_runtime.h>
+  #include "helper_cuda.h"
+  #include <vector>
+  
+  template<class T>
+  struct CudaAllocator {
+      using value_type = T;
+      T *allocate(size_t size) {
+          T *ptr = nullptr;
+          checkCudaErrors(cudaMallocManaged(&ptr, size * sizeof(T)));
+          return ptr;
+      }
+  
+      void deallocate(T *ptr, size_t size = 0) {
+          checkCudaErrors(cudaFree(ptr));
+      }
+  };
+  
+  __global__ void kernel(int* arr, int n) {
+      for (size_t i = blockDim.x * blockIdx.x + threadIdx.x; i < n; i++)
+      {
+          arr[i] = i;
+      }
+  }
+  
+  int main() {
+      int n = 65536;
+      std::vector<int, CudaAllocator<int>> arr(n);
+      kernel<<<32, 128>>> (arr.data(), n);
+  
+      checkCudaErrors(cudaDeviceSynchronize());
+      for (size_t i = 0; i < n; i++)
+      {
+          printf("arr[%d] = %d\n", i, arr[i]);
+      }
+      return 0;
+  }
+  ```
+
+### 进一步， 避免初始化为0
+
+- vector在初始化的时候，(或者resize之后)会调用所有元素的无参构造函数， 对int类型来说是零初始化。然而这个初始化是在CPU上做的，因此我们需要禁用他
+- 通过给allocator添加construct成员函数，来魔改vector对元素的操作，默认情况下它可以有任何多个参数， 而如果么有参数说明是无参构造函数
+- 因此我们只需要判断是不是有参数，然后是不是传统的C语言类型，如果是，则跳过其无参构造，从而在CPU上无效的零初始化。
+
+### 进一步 核函数可以是一个模板函数
+
+- CUDA的优势在于对C++的完全支持。所以_\_global__修饰的核函数自然可以是模板函数的
+- 调用模板时，一样可以用自动参数类型推导，如有手动指定的模板参数, 请放在三重尖括号的前面。
+- 
