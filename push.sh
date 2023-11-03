@@ -15,7 +15,7 @@ git_push(){
     then
          echo "${1} 文件夹 有变化, 正在准备push..."
         date=`date "+%Y-%m-%d %H:%M:%S"`
-        git add .    
+        git add .
         git commit -m "automatic push @$(date)"
         echo "git fetch origin main"
         git fetch origin main
@@ -25,8 +25,8 @@ git_push(){
 
         echo "git push origin main"
         git push origin main
-         
+
     fi
 }
 
-git_push /home/ts/vscode/NoteBook
+git_push /home/ts/learn/NoteBook
