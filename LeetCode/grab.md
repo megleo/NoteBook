@@ -26,7 +26,7 @@ I got the model file named **model480x640_4snpe_op11_nosigm.onnx**.
 
    Does this model covert from the **model480x640_4snpe_op11_nosigm.onnx**?
 
-3. I have provided an AI model to you. This model can work normally after conversion.
+3. 
 
 ---
 
