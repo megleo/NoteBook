@@ -60,3 +60,4 @@
 ![image-20231116065208808](systemc-clang/image-20231116065208808.png)
 
 clang 中的关键基类是 Stmt、Decl 和 Type。表一列出了基本的 clang 类型以及从基本类继承的类的示例。图 1 显示了 systemc-clang 中的一个类的片段，该类提取通过套接字接口在启动器和目标之间通信的通用有效负载信息。通用有效负载由一组使用某些公共方法设置的属性组成。例如，可以使用set command()访问函数设置读/写命令，并且可以使用set address()方法设置目标存储器映射的起始地址。图 3 显示了用于设置通用负载属性的 AST。可以看出，set command() 和 set address() 方法的 AST 节点的类型为 CXXMemberCallExpr。因此，在 FindPayloadCharacteristics 类中，我们使用虚拟可重写函数 virtual bool VisitCXXMemberCallExpr() 来遍历 CXXMemberCallExpr 类型的节点。用于定义通用有效负载属性的公共方法采用单个参数。因此，我们使用 CXXMemberCallExpr 类的公共成员函数 getArg() 来提取特定属性的参数名称。由于有效负载的属性是在 SystemC 进程中设置的，因此 FindPayloadCharacteristics 类构造函数将 CXXMethodDecl 实例作为参数，它表示类/结构的方法实例。
+
