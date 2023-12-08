@@ -60,11 +60,77 @@
 
    接下来我们简要描述这些分析的一个子集。
 
+![image-20231207211009030](${images}/image-20231207211009030.png)
+
+1. Parser
+
+   SCCL 使用Clang 来解析和创建AST， 匹配器遍历AST来识别和提取SystemC的信息， 结构化的信息可以快速访问底层的AST以及systemc设计中定义的线程的CFG. 
+
+2. Synthesizable channel type  不清楚有什么用。
+
+3. Hcode AST 在 SCCL 的设计流程中发挥着核心作用。 Hcode 构造描述了 SystemC 实例，并以简化的 AST 表达了 SystemC 进程的行为。这种简化的 Hcode AST 使转录到可合成的 RTL 变得简单。
+
+   - 有多种分析，图上可以看出有四种。
+
+   - Thread Analysis
+   
+     进程有两种形式， methods 和 threads
+   
+     method processes 可以转换成SystemC verilog中的always。
+   
+     线程进程需要转换成语义上等效的RTL.
+   
+     thread processes 
+   
+     A key distinguishing aspect about thread processes is **that it encourages the use of wait statements**. 
+   
+     SystemC designs that use threads need to be converted into their c**orresponding state machines.** 
+   
+     **Although this is not synthesis in the classical sense, the process of translating SystemC threads to state machines does result in assigning clock cycles to operations.** 
+   
+     SCCL **uses a novel algorithm** to translate SystemC threads **into state machines amenable to synthesis.**
+   
+      The algorithm has two steps. 
+   
+     - The first step converts the thread process’s control-flow graph (CFG) into a suspension CFG graph (SCFG) that separates every CFG block with one or more wait statements such that every wait statement has its own CFG block. This is done while preserving predecessor and successor edges. 
+     - The second step uses runBuildFSM and buildFSM from Algorithms 1 and 2, which uses a recursive algorithm mimicking a depth-first-search variant to traverse the SCFG and construct the CFG blocks that must execute in each corresponding state of the state machine. For brevity, we abstract the algorithm to focus on the traversal. We do not show the transformation from Clang’s CFG to SCFG, and the collection of CFG blocks that provide the resulting RTL code.
+   
+     - buildFSM
+   
+       ![image-20231207221420214](${images}/image-20231207221420214.png)
+   
+       ![image-20231207221512126](${images}/image-20231207221512126.png)
+   
+     ---
+   
+     * *在这里可以增加数据竞争分析， 存储到这种Hcode中*
+
+​      
+
+```verilog
+function automatic void for_stmt_wait0_func ();
+begin
+case(state_for_stmt_wait0)
+0: begin
+k_scclang_global_1 = 0;
+_next_state_for_stmt_wait0 = 1;
+return;
+end
+end
+...
+endcase
+endfunction
+always @(*) begin: for_stmt_wait0_state_update
+state_for_stmt_wait0 = _next_state_for_stmt_wait0;
+wait_counter_for_stmt_wait0 =
+_next_wait_counter_for_stmt_wait0;
+wait_next_state_for_stmt_wait0 =
+_next_wait_next_state_for_stmt_wait0;
+_main_k_scclang_global_1 = k_scclang_global_1;
+for_stmt_wait0_func();
+end
+```
+
 
 
    
-
-
-
-
-
