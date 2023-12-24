@@ -38,3 +38,9 @@ clang toy.cpp -lstdc++ -fuse-ld=lld `llvm-config --cxxflags --ldflags --system-l
 
 
 
+## OpenCV
+
+```shell
+cmake  -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D CMAKE_PREFIX_PATH=/opt/Qt5.12.12/5.12.12/gcc_64/lib/cmake/Qt5 -D WITH_TBB=ON -D WITH_V4L=ON -D WITH_QT=ON  -D WITH_GTK=ON -D WITH_OPENGL=ON  -D WITH_VTK=ON -D OPENCV_GENERATE_PKGCONFIG=YES -D INSTALL_C_EXAMPLES=ON -D INSTALL_PYTHON_EXAMPLES=ON -D OPENCV_GENERATE_PKGCONFIG=ON -D OPENCV_ENABLE_NONFREE = ON -D OPENCV_EXTRA_MODULES_PATH=/home/m/software/opencv_contrib-4.5.5/modules -D BUILD_EXAMPLES=ON ..
+```
+
