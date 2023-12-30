@@ -93,7 +93,21 @@ QNN SDK提供多个后端库，这些库文件可以在<QNN_SDK_ROOT>/lib/\<targ
 
 ---
 
-### DSP
+### DSP API
+
+QNN DSP 后端的API在 `<QNN_SDK_ROOT>/include/QNN/DSP/ 目录下找到。`
+
+客户端可以在加载 QNN DSP 库后调用 QnnBackend_getPerfInfrastruct，然后调用QnnDspPerfInfrastruct.h 中可用的方法。 这些 API 允许客户端控制 DSP 加速器的系统设置，从而对加速器进行细粒度控制。
+
+> 通过控制电压角点来设置投票策略。
+>
+> 设置 DCVS 模式以实现适用于用例的不同性能设置。
+>
+> 设置加速器的线程数。
+>
+> > 如果未提供 dcvsEnableConfig QnnDspPerfInfrastruct_DcvsEnable_t，则 DCVS 参与标志将设置为 FALSE。
+>
+> > 在电源设置调用中，如果未将电源模式指定为配置的一部分，则电源模式将设置为省电模式。
 
 
 

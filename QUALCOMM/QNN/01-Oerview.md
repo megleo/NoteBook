@@ -1,99 +1,59 @@
-# QNN Overview
+# QNN
+
+QNN 旨在提供统一的API 以及模块化和扩展的加速库， 为全栈AI解决方案提供可重用的基础。
+
+## 软件架构
 
 
 
-| eNGLISH                                                      | CHINA                | SHORT |
-| ------------------------------------------------------------ | -------------------- | ----- |
-| Qualcomm Technologies Inc                                    | 高通股份有限公司     | QTI   |
-| Qualcomm® [AI Engine Direct](introduction.html#qnn-ai-engine-note) architecture | 高通边缘人工智能框架 |       |
-|                                                              |                      |       |
-|                                                              |                      |       |
-|                                                              |                      |       |
-|                                                              |                      |       |
-|                                                              |                      |       |
-|                                                              |                      |       |
+![1703647522130](images/1703647522130.png)
 
----
+- Device
 
+  硬件加速器的软件抽象， 提供关联所需硬件加速资源以执行用户组成的图形所需要的构造。一个平台可以分为多个device， 一个`device`可以有多个核心。
 
+- backend
 
-Qualcomm® [AI Engine Direct](introduction.html#qnn-ai-engine-note) architecture is designed to provide an unified API and modular and extensible per-accelerator libraries which form a reusable basis for full stack AI solutions, both QTI’s own and third party frameworks (as illustrated with [AI Software Stack with Qualcomm AI Engine Direct](#qnn-sw-stack-figure) diagram).
+  后端是一个`顶级API组件`， 它托管和管理图组合和执行所需的大多数资源， 包括存储所有可操作的操作注册表。
 
-![image-20230718111250745](images/image-20230718111250745.png)
+- Context
 
-## Features
+  代表维持用户程序所需要的QNN组建的`构造`。 托管用户提供网络，并`允许将构造的实体缓存到序列化对象中`以提供将来使用. 它通过提供`可共享的内存空间`来实现多个图之间的互操作性。
 
-**Modularity based on hardware accelerators**
+- Graph 
 
-The Qualcomm® [AI Engine Direct](introduction.html#qnn-ai-engine-note) architecture is designed to be modular and allows for clean separation in the software for different hardware cores/accelerators such as the CPU, GPU and DSP that are designated as *backends*.
+  表示可以加载网络模型的方式，由表操作节点和他们互联以组成有向无环图的张良组成，QNN 图形结构支持执行网络模型的初始化， 优化和执行的API。
 
-The Qualcomm® AI Engine Direct backends for different hardware cores/accelerators are compiled into individual core-specific libraries that come packaged with the SDK.
+- Operation Package Registry 
 
-**Unified API across IP Cores**
+  一个注册表， 用户维护可用于执行模型的所有操作的记录， 这些操作可以是内置的， 也可以由用户作为自定义的操作提供。
 
-One of the key highlights of Qualcomm® [AI Engine Direct](introduction.html#qnn-ai-engine-note) is that it provides a unified API to delegate operations such as graph creation and execution across all hardware accelerator backends. This allows users to treat Qualcomm® [AI Engine Direct](introduction.html#qnn-ai-engine-note) as a hardware abstraction API and port applications easily to different cores.
+## Integration Workflow
 
-**一定级别的抽象**
+![1703649134799](images/1703649134799.png)
 
-The Qualcomm® [AI Engine Direct](introduction.html#qnn-ai-engine-note) API 旨在支持高效的执行模型， 内部有一些图优化等功能。但与此同时，这遗漏了更广泛的功能，例如模型解析和网络分区到更高界别的框架。
+### QNN workflow
 
-**可扩展算子**
+![1703649839494](images/1703649839494.png)
 
-支持客户集成自定义算子，以便与内置算子无缝协作。
+1. 输入训练好的模型
 
-**提高执行效率**
+2. 当模型中包含QNN不支持的算子的时候， 需要想转换提供OpPackage定义的文件， 以表达自定义算子。
 
-凭借优化网络加载和异步执行支持，能为机器学习框架提供高效的接口，以便在所需的硬件加速器上加载和执行网络。
+   客户可以使用OpPackage生成器工具生成框架代码，来实现自定义代码，并将这些代码编译到OpPackage库中。
 
-## Software Architecture
+3. `Model Converter Tool`是一款工具， 可以帮助客户编写一系列QNN API调用来生成QNN格式的`用户提供的训练模型`的图表示。模型的输出如下：
 
-![image-20230718113311799](images/image-20230718113311799.png)
+   - `cpp` source file 包含QNN API 调用的`模型网络`图。
+   - `bin` 二进制文件 ` 包含网络的权重和biases`的`float32 数据`
 
-### Device
+   客户可以指示转换器输出量化模型而不是默认模型， 如图中的量化model.cpp所示， 在这种情况下， model.bin文件中将包含量化数据， model.cpp将引用量化数据并包含量化编码， 某些QNN的后端库需要使用量化模型，如 HTP和DSP。
 
-硬件加速平台的软件抽象。提供了关联所需的硬件加速器资源以执行用户组成的图所需要的所有构造。一个平台可以被分解成多个设备，设备可能有多个核心。
+4. 客户可以使用QNN的模型库生成工具来生成模型库， 相关工具`qnn-model-lib-generator`.
 
-### Backend
+5. 客户通过动态加载模型库护着编译并静态链接model.cpp和model.bin将模型集成到应用程序中， 为了准备和执行模型，客户还需要加载后端加速器和OpPackage库， OpPackage库在后端注册并在后端加载。
 
-后端是一个顶级的API组件，它托管和管理图组合和执行所需的大部分后端资源，包括存储所有可用算子的算子注册表。
+6. 客户端可以选择使用准备好的和最终的图来保存上下文二进制缓存。 请参阅上下文缓存以供参考。 可以从缓存中重复加载此类图，而无需进一步使用模型 .cpp/库。 从缓存加载模型图比通过模型 .cpp/库中提供的一系列图组合 API 调用进行准备要快得多。 缓存的图无法进一步修改； 它们用于部署准备好的图表，从而能够更快地初始化客户端应用程序。
 
-### Context 上下文
-
-语境
-代表维持用户应用程序所需的所有 Qualcomm® AI Engine Direct 组件的构造。 托管用户提供的网络，并允许将构造的实体缓存到序列化对象中以供将来使用。 它通过提供可共享的内存空间（可以在图之间交换张量）来实现多个图之间的互操作性。
-
-### Graph 图
-
-表示加载网络的方式。由（表示算子的节点）和（将节点互联以组成有向无环图的张量）组成。高通的图结构的APIs是支持网络模型的图初始化，优化，和执行。
-
-### Operation Package Registry
-
-一个注册表，用于维护可用于执行模型的所有算子的记录。 这些操作可以是内置的，也可以由用户作为自定义操作提供。
-
-## Integration Workflow on Linux
-
-![image-20230718150418210](images/image-20230718150418210.png)
-
-The Qualcomm® [AI Engine Direct](introduction.html#qnn-ai-engine-note) SDK includes tools to aid clients in integrating trained DL networks into their applications. The basic integration workflow is illustrated with the [Qualcomm AI Engine Direct Integration Workflow](#qnn-basic-workflow-figure) diagram.
-
-![image-20230718150634931](images/image-20230718150634931.png)
-
-1. 用户将训练的模型作为输入，利用SDK 提供的工具进行模型转换。
-
-2. 当客户的模型中存在SDK 后端不支持的算子的时候，用户需要需要想转化器提供OpPackage定义文件，表示客户定义的算子。客户也可以使用OpPackage生成器生成框架代码来实现自定义算子并将其编译到OpPackage库中。详情参考 qnn-op-package-generator.
-
-3. SDK提供的模型转换器是一款可以帮助用户编写一些列的SDK API调用的工具，以神经网络模型作为输入， 输出以下文件：
-
-   - cpp源文件： 包含构建网络所需要的API调用。
-   - bin二进制文件，包含float32数据行是的网络权重和偏差。
-
-   用户可以选择至是转换器输出量化模型而不是默认的模型（float32）, 如图中的Quantized model.cpp。 在这种情况下，model.bin 文件将包含量化数据，model.cpp 将引用量化张量数据类型并包含量化编码。 某些 Qualcomm® AI Engine Direct 后端库可能需要量化模型，例如 HTP 或 DSP
-
-4. 用户可以选择模型库生成工具来生成模型库。详见qnn-model-lib-generator.
-
-5. 用户可以通过动态加载模型库或编译并静态连接model.cpp 和 model.bin将模型集成到应用程序中。为了准备和执行模型，用户还需要加载Qualcomm AI Engine Direct 后端加速器和OpPackage库。OpPackagek库在后端注册并由后端加载。
-
-6. 用户可以选择使用准备好的和最终的图来保存上下文二进制缓存。请先参阅上下文缓存以供参考。可以从缓存中重复加载此类图，而无需进一步使用模型cpp库，从缓存加载模型比通过模型.cpp库提供的一系列图API调用要快的多。缓存的图无法进一步修改；他们用于部署准备好的图表，从而能够更快的初始化客户端应用程序。
-
-   
+7. 客户可以选择利用 Qualcomm 神经处理 SDK 生成的深度学习容器 (DLC) 与提供的 libQnnModelDlc.so 库结合使用，从应用程序中的 DLC 路径生成 QNN 图形句柄。 这提供了跨产品使用的单一格式，并支持无法编译到共享模型库的大型模型。 有关使用的详细信息，请参阅使用 DLC。
 
